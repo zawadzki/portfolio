@@ -1,0 +1,74 @@
+---
+import "../styles/index.scss";
+
+const scriptSrc = import.meta.env.DEV
+  ? "/src/scripts/main.ts"
+  : "/assets/main.js";
+
+const {
+  title = "Damian Zawadzki — Full-stack Dev.",
+  description = "Blending creativity with technology to create innovative solutions.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000031" />
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zawdam.dev/">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content="/social-img.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://zawdam.dev/">
+    <meta property="twitter:title" content={title}>
+    <meta property="twitter:description" content={description}>
+    <meta property="og:image" content="/social-img.jpg">
+  </head>
+  <body>
+    <div class="page">
+      <div id="scene" class="canvas-layer" aria-hidden="true" data-reveal></div>
+
+      <header class="site-header px-5" data-reveal>
+        <div class="header-inner">
+          <a class="logo" href="/">damian zawadzki</a>
+          <nav class="nav" aria-label="Primary">
+            <a href="#work">work</a>
+            <a href="#about">about</a>
+            <a href="#contact">contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="site-footer px-5" data-reveal>
+        <div class="footer-inner">
+          <p class="footer-title">&copy; 2026</p>
+          <div class="footer-links">
+            <a href="mailto:hello@yourname.com">hello <i class="icon icon-at"></i> zawdam.dev</a>
+            <a href="https://www.linkedin.com/in/zawdam/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/zawadzki" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src={scriptSrc}></script>
+  </body>
+</html>

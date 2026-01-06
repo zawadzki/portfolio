@@ -1,0 +1,59 @@
+---
+type AboutPhoto = {
+  src: string;
+  alt: string;
+  crt?: boolean;
+};
+
+type TimelineItem = {
+  time: string;
+  company: string;
+  role: string;
+  description: string;
+};
+
+type AboutData = {
+  photo: AboutPhoto;
+  paragraphs: string[];
+  location: string;
+  timeline: TimelineItem[];
+};
+
+const { data } = Astro.props;
+const { photo, paragraphs, location, timeline } = data as AboutData;
+---
+
+<div class="about" data-reveal>
+  <figure class="about-photo" data-crt={photo.crt ? "true" : undefined}>
+    <img src={photo.src} alt={photo.alt} />
+  </figure>
+  <div class="about-content-wrapper">
+    <div class="about-content">
+      {paragraphs.map((text) => (
+        <p>{text}</p>
+      ))}
+      <div class="about-content-based">
+        <i class="icon icon-pin"></i> {location}
+      </div>
+    </div>
+    <ul class="timeline" data-reveal-group>
+      {timeline.map((item) => (
+        <li class="timeline-item" data-reveal-item>
+          <div class="timeline-middle">
+            <div class="timeline-middle-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <time class="timeline-content-time">{item.time}</time>
+            <h4 class="timeline-content-title">
+              {item.company}{" "}
+              <span class="timeline-content-role">
+                &mdash; {item.role}
+              </span>
+            </h4>
+            {item.description}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.featured {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 50%;
+  margin-right: 0;
+  margin-left: auto;
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+  }
+}
+
+.featured-item {
+  font-size: 0;
+  mix-blend-mode: exclusion;
+  width: calc(33.333% - 5px);
+
+  @media (max-width: 690px) {
+    width: calc(50% - 5px);
+  }
+}

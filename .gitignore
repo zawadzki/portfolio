@@ -12,6 +12,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# public unoptimized base images
+public/*/*/*.png
 
 # environment variables
 .env
@@ -20,5 +22,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# IDEs setting folder
 .idea/
+.vscode/

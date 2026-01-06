@@ -1,0 +1,27 @@
+.site-header {}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 0;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-size: 1.85rem;
+  font-weight: var(--light);
+  letter-spacing: var(--letter-spacing);
+}
+
+.nav {
+  display: flex;
+  gap: 5rem;
+  font-size: 1.85rem;
+  font-weight: var(--light);
+  letter-spacing: var(--letter-spacing);
+
+  @media (max-width: 690px) {
+    display: none;
+  }
+}

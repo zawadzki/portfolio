@@ -1,0 +1,14 @@
+.magnetic-target:not(.button) {
+  display: inline-flex;
+  transition: all 0.25s ease, font-weight 0.25s ease, text-shadow 0.25s ease;
+  will-change: transform;
+
+  &:hover {
+    font-weight: var(--medium);
+    text-shadow: 0 2px 1px var(--color-secondary);
+  }
+}
+
+.magnetic-target.is-magnetic {
+  transition: all 0.12s ease;
+}

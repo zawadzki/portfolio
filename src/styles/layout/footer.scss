@@ -1,0 +1,33 @@
+.site-footer {}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-title {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: var(--letter-spacing);
+  color: var(--text-subdued);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: var(--letter-spacing);
+  color: var(--text-subdued);
+
+  a {
+    display: inline-flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,40 @@
+---
+layout: ../layouts/Base.astro
+title: "Damian Zawadzki — Full-stack Dev."
+description: "Blending creativity with technology to create innovative solutions."
+---
+
+import HeroSection from "../components/HeroSection.astro";
+import TickerSection from "../components/TickerSection.astro";
+import FeaturedWork from "../components/FeaturedWork.astro";
+import OpenSource from "../components/OpenSource.astro";
+import AboutSection from "../components/AboutSection.astro";
+import ContactSection from "../components/ContactSection.astro";
+import {
+  featuredItems,
+  openSourceItems,
+  aboutData,
+  contactData,
+} from "../data/homepage";
+
+<HeroSection />
+
+<div className="section-wrapper" id="work">
+    <TickerSection label="Featured work" />
+    <FeaturedWork items={featuredItems} />
+</div>
+
+<div className="section-wrapper">
+    <TickerSection label="Open source" />
+    <OpenSource items={openSourceItems} />
+</div>
+
+<div className="section-wrapper" id="about">
+    <TickerSection label="About me" />
+    <AboutSection data={aboutData} />
+</div>
+
+<div className="section-wrapper" id="contact">
+    <TickerSection label="Contact" />
+    <ContactSection data={contactData} />
+</div>

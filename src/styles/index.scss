@@ -1,0 +1,47 @@
+/* -----------------------
+  Externals
+ ----------------------- */
+
+@use "vendors/reset";
+
+/* -----------------------
+  Utils
+ ----------------------- */
+
+@use "utils/helpers";
+
+/* -----------------------
+  Globals
+ ----------------------- */
+
+@use "vars/root";
+@use "base/fonts";
+@use "base/icons";
+@use "base/global";
+
+/* -----------------------
+  Layout
+ ----------------------- */
+
+@use "layout/header";
+@use "layout/canvas";
+@use "layout/lead";
+@use "layout/section";
+@use "layout/footer";
+
+/* -----------------------
+  Components
+ ----------------------- */
+
+@use "components/cursor";
+@use "components/button";
+@use "components/magnetic";
+@use "components/ticker";
+@use "components/status";
+@use "components/featured";
+@use "components/open-source";
+@use "components/technologies";
+@use "components/hover-preview";
+@use "components/divider";
+@use "components/about";
+@use "components/timeline";

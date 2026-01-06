@@ -1,0 +1,39 @@
+.lead {
+  position: relative;
+
+  &.align-center {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  h1 {
+    line-height: 1;
+    font-size: 8.65rem;
+    font-weight: var(--medium);
+    font-family: var(--font-base), sans-serif;
+    & > span {
+      display: block;
+    }
+
+    @media (max-width: 690px) {
+      font-size: 6rem;
+    }
+  }
+
+  p {
+    font-size: 1.85rem;
+    font-weight: var(--light);
+    letter-spacing: var(--letter-spacing);
+    color: var(--text-subdued);
+  }
+}
+
+.description-status {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  --animate-ping: ping 1s cubic-bezier(0,0,.2,1) infinite;
+}

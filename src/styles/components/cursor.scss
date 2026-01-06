@@ -1,0 +1,143 @@
+body {
+  .has-cursor & {
+    cursor: none;
+
+    a,
+    button {
+      cursor: none;
+      will-change: transform;
+    }
+  }
+}
+
+.cursor,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.06s ease;
+  mix-blend-mode: exclusion;
+}
+
+.cursor {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--text);
+  transform: translate3d(0, 0, 0);
+}
+
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px !important;
+  border: none;
+  background: transparent;
+  transform: translate3d(0, 0, 0);
+  transition: width 0.06s ease, height 0.06s ease, transform 0.06s ease;
+}
+
+.cursor-ring-inner {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(0, 0, 0);
+  transform-origin: center;
+}
+
+.cursor-reticule {
+  position: absolute;
+  inset: 0;
+  transform-origin: center;
+}
+
+.cursor-corner {
+  position: absolute;
+  background: var(--text);
+}
+
+.reticule-idle {
+  animation: cursor-spin 3s linear infinite;
+}
+
+.reticule-target {
+  animation: none;
+}
+
+.cursor-active .cursor {
+  transform: translate3d(0, 0, 0) scale(1.8);
+  background: rgba(var(--text), 0.9);
+}
+
+.cursor-active .cursor-ring {
+  transform: translate3d(0, 0, 0);
+}
+
+.cursor-ring.ring-target {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.cursor-target .cursor {
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(0);
+}
+
+.cursor-pressed .cursor {
+  transform: translate3d(0, 0, 0) scale(0.8);
+}
+
+.cursor-pressed .cursor-ring {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.08s ease;
+}
+
+.cursor-release .cursor-ring {
+  animation: none;
+}
+
+.cursor-active .cursor-ring-inner {
+  transform: translate3d(0, 0, 0) scale(1.15);
+}
+
+.cursor-pressed .cursor-ring-inner {
+  transform: translate3d(0, 0, 0) scale(0.85);
+  transition: transform 0.06s ease;
+}
+
+.cursor-release .cursor-ring-inner {
+  animation: cursor-bounce 0.20s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
+@keyframes cursor-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cursor-bounce {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.85);
+  }
+  60% {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    cursor: auto;
+  }
+
+  .cursor,
+  .cursor-ring {
+    display: none;
+  }
+}

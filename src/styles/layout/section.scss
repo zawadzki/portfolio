@@ -1,0 +1,26 @@
+.section {
+  border-top: 1px solid var(--line);
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.section-description {
+  color: var(--muted);
+  max-width: 28rem;
+  margin: 0;
+}

@@ -1,0 +1,46 @@
+.open-source {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  gap: 1rem;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+
+.open-source-item {
+  width: 100%;
+  padding: 2rem;
+  border: 1px solid var(--text);
+  transition: color .25s ease, background-color .25s ease;
+
+  &:hover {
+    background-color: var(--text);
+    color: var(--bg);
+  }
+}
+
+.open-source-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.open-source-item-title {
+  font-size: 2rem;
+  font-weight: var(--medium);
+  line-height: 1;
+}
+
+.open-source-item-subtitle {
+  font-size: 1rem;
+  font-weight: var(--medium);
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.open-source-item-description {
+  font-size: 1.25rem;
+}

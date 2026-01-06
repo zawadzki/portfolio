@@ -1,0 +1,36 @@
+---
+type ContactButton = {
+  href: string;
+  label: string;
+  iconClass: string;
+};
+
+type ContactData = {
+  title: string;
+  subtitle: string;
+  buttons: ContactButton[];
+};
+
+const { data } = Astro.props;
+const { title, subtitle, buttons } = data as ContactData;
+---
+
+<section class="section px-5 py-10 full-h flex items-center">
+  <div class="lead align-center" data-reveal>
+    <h1>{title}</h1>
+    <div class="description-status">
+      <div class="inline-grid">
+        <div class="status status-success animate-ping"></div>
+        <div class="status status-success"></div>
+      </div>
+      <p>{subtitle}</p>
+    </div>
+    <div class="buttons">
+      {buttons.map((button) => (
+        <a class="button button-primary mt-2" href={button.href}>
+          <i class={`icon ${button.iconClass}`}></i> {button.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

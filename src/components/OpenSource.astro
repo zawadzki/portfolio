@@ -1,0 +1,53 @@
+---
+type OpenSourceLink = {
+  href: string;
+  label: string;
+};
+
+type OpenSourceItem = {
+  title: string;
+  description: string;
+  hoverImage?: string;
+  technologies: string[];
+  link: OpenSourceLink;
+};
+
+const { items } = Astro.props;
+---
+
+<section class="section px-5 py-10 flex items-center">
+  <div class="open-source is-hover" data-reveal-group>
+    {items.map((item: OpenSourceItem) => (
+      <div
+        class={`open-source-item${item.hoverImage ? " hover-item" : ""}`}
+        data-hover-image={item.hoverImage}
+        data-reveal-item
+      >
+        <div class="open-source-item-content">
+          <h3 class="open-source-item-title">{item.title}</h3>
+          <p class="open-source-item-description">{item.description}</p>
+          <div class="divider"></div>
+          <h4 class="open-source-item-subtitle">Tech stack</h4>
+          <div class="technologies">
+            {item.technologies.map((icon) => (
+              <div class="technologies-item">
+                <i class={`icon ${icon}`}></i>
+              </div>
+            ))}
+          </div>
+          <div class="divider"></div>
+          <div class="open-source-item-link">
+            <a
+              href={item.link.href}
+              target="_blank"
+              rel="noreferrer"
+              class="button button-primary open-source-item-subtitle"
+            >
+              <i class="icon icon-github"></i> {item.link.label}
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,92 @@
+.p-5 {
+  padding: 5rem;
+
+  @media (max-width: 690px) {
+    padding: 2rem;
+  }
+}
+
+.px-5 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+
+  @media (max-width: 690px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.py-5 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  @media (max-width: 690px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.py-10 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+
+  @media (max-width: 690px) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.full-h {
+  height: calc(100dvh - 92px);
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.inline-grid {
+  display: inline-grid;
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.col-7 {
+  grid-column: span 7;
+}
+
+.col-5 {
+  grid-column: span 5;
+}
+
+.animate-ping {
+  animation: var(--animate-ping);
+}
+
+.js [data-reveal],
+.js [data-reveal-item] {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@media (max-width: 1024px) {
+  .grid-12 {
+    grid-template-columns: 1fr;
+  }
+
+  .col-7,
+  .col-5 {
+    grid-column: span 1;
+  }
+}

@@ -1,0 +1,27 @@
+---
+type FeaturedItem = {
+  href: string;
+  image: string;
+  hoverImage: string;
+  alt: string;
+};
+
+const { items } = Astro.props;
+---
+
+<section class="section px-5 py-10 flex items-center">
+  <div class="featured is-hover" data-reveal>
+    {items.map((item: FeaturedItem) => (
+      <div
+        class="featured-item hover-item"
+        data-hover-image={item.hoverImage}
+      >
+        <a href={item.href} target="_blank" rel="noreferrer">
+          <figure>
+            <img src={item.image} alt={item.alt} />
+          </figure>
+        </a>
+      </div>
+    ))}
+  </div>
+</section>
