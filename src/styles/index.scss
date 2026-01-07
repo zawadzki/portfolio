@@ -45,3 +45,11 @@
 @use "components/divider";
 @use "components/about";
 @use "components/timeline";
+@use "components/preloader";
+@use "components/blur-up";
+
+/* -----------------------
+  Pages
+ ----------------------- */
+
+@use "pages/portfolio";

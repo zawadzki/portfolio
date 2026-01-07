@@ -5,3 +5,5 @@ import "./ticker";
 import "./hover-preview";
 import "./photo-glitch";
 import "./hash-scroll";
+import "./preloader";
+import "./blur-up";

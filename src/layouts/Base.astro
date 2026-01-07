@@ -4,6 +4,8 @@ import "../styles/index.scss";
 const scriptSrc = import.meta.env.DEV
   ? "/src/scripts/main.ts"
   : "/assets/main.js";
+const isHome = Astro.url.pathname === "/";
+const homeHash = (hash) => (isHome ? hash : `/${hash}`);
 
 const {
   title = "Damian Zawadzki — Full-stack Dev.",
@@ -11,7 +13,7 @@ const {
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="is-preloading">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,16 +41,18 @@ const {
     <meta property="og:image" content="/social-img.jpg">
   </head>
   <body>
-    <div class="page">
-      <div id="scene" class="canvas-layer" aria-hidden="true" data-reveal></div>
+    <div class="preloader" aria-hidden="true">
+      <span class="preloader__line"></span>
+    </div>
 
+    <div class="page">
       <header class="site-header px-5" data-reveal>
         <div class="header-inner">
           <a class="logo" href="/">damian zawadzki</a>
           <nav class="nav" aria-label="Primary">
-            <a href="#work">work</a>
-            <a href="#about">about</a>
-            <a href="#contact">contact</a>
+            <a href={homeHash("#work")}>work</a>
+            <a href={homeHash("#about")}>about</a>
+            <a href={homeHash("#contact")}>contact</a>
           </nav>
         </div>
       </header>

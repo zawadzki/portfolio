@@ -2,6 +2,10 @@ html {
   font-size: 16px;
   scroll-behavior: auto;
 
+  @media (max-width: 1280px) {
+    font-size: 15px;
+  }
+
   @media (max-width: 1024px) {
     font-size: 14px;
   }
@@ -14,8 +18,10 @@ html {
 body {
   font-family: var(--font-body), sans-serif;
   background-color: var(--bg);
-  background-image:  url("/pattern.svg"), url("/noise.png");
-  background-size: auto, auto;
+  background-image:  url("/light.webp"), url("/pattern.svg"), url("/noise.png");
+  background-repeat: no-repeat, repeat, repeat;
+  background-position: top center, center, center;
+  background-size: auto, auto, auto;
   color: var(--text);
   line-height: 1.6;
 }

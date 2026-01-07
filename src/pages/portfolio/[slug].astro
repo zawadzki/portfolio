@@ -1,0 +1,115 @@
+---
+import Base from "../../layouts/Base.astro";
+import { featuredItems } from "../../data/homepage";
+
+export function getStaticPaths() {
+  return featuredItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const title = `${item.title} — Portfolio`;
+---
+
+<Base title={title}>
+  <section class="section px-5 py-10">
+    <div class="portfolio">
+      <div class="portfolio-col">
+        <div class="portfolio-col-sticky">
+          <div class="lead" data-reveal>
+            <h1>{item.title}</h1>
+          </div>
+          <div class="portfolio-info">
+            {item.description?.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+
+            {item.role?.map((paragraph) => (
+                <div class="divider"></div>
+                <div class="portfolio-info-footer">
+                  <div class="portfolio-info-footer-item">
+                    <h4 class="open-source-item-subtitle" data-reveal>My role</h4>
+                    <div class="technologies" data-reveal>
+                      <p>{paragraph}</p>
+                    </div>
+                  </div>
+                </div>
+            ))}
+
+            <div class="divider"></div>
+
+            <div class="portfolio-info-footer">
+
+              <div class="portfolio-info-footer-item">
+                <h4 class="open-source-item-subtitle" data-reveal>Technologies used</h4>
+                <div class="technologies" data-reveal>
+                  {item.technologies?.map((icon) => (
+                    <div class="technologies-item">
+                      <i class={`icon ${icon}`}></i>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div class="portfolio-info-footer-item">
+                <h4 class="open-source-item-subtitle" data-reveal>Agency</h4>
+                <div class="technologies" data-reveal>
+                  {item.agency?.logo ? (
+                    <img src={item.agency.logo} alt={item.agency.name} />
+                  ) : (
+                    <span>{item.agency?.name}</span>
+                  )}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="divider"></div>
+
+              <div class="buttons" data-reveal>
+                <a class="button button-primary mt-2" href="/#work">
+                  other projects
+                </a>
+                {item.externalUrl && (
+                  <a class="button button-primary mt-2" href={item.externalUrl} target="_blank" rel="noreferrer">
+                    visit website
+                    <i class="icon icon-external"></i>
+                  </a>
+                )}
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-col">
+        {item.fullImage && (
+          <figure>
+            <img
+              src={item.fullImage}
+              alt={`${item.title} full page`}
+              loading="lazy"
+              decoding="async"
+              data-blur-up
+            />
+          </figure>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section px-5 py-10 full-h flex items-center">
+    <div class="lead align-center" data-reveal>
+      <h2>Let's build something together</h2>
+      <div class="description">
+        <p>From concept to launch — thoughtful, reliable delivery.</p>
+      </div>
+      <div class="buttons">
+        <a class="button button-primary mt-2" href="mailto:hello@zawdam.dev">
+          <i class="icon icon-mail"></i>
+          write a short brief
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,9 +1,17 @@
 .technologies {
-  display: flex;
   gap: 2rem;
+  display: flex;
+  min-height: 35px;
+  align-items: center;
+
+  p {
+    font-size: 1.25rem;
+  }
 }
 
 .technologies-item {
+  display: flex;
+  align-items: center;
 
   .icon {
     font-size: 1.85rem;

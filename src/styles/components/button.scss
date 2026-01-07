@@ -16,11 +16,13 @@
 
 .button {
   justify-content: center;
-  font-weight: var(--light);
+  font-weight: var(--regular);
   display: inline-flex;
   color: var(--text);
   padding: 1rem 1.5rem;
-  font-size: 1.85rem;
+  font-size: 1.125rem;
+  letter-spacing: var(--letter-spacing);
+  text-transform: uppercase;
   line-height: 1;
   will-change: transform;
   gap: 1rem;
