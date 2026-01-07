@@ -50,10 +50,19 @@
 
 .mt-2 {
   margin-top: 2rem;
+
+  @media (max-width: 690px) {
+    margin-top: 0;
+  }
 }
 
 .full-h {
   min-height: calc(100dvh - 83px);
+
+  @media (max-width: 690px) {
+    //min-height: 0;
+    min-height: 100dvh;
+  }
 }
 
 .flex {

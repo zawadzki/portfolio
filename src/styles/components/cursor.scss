@@ -33,7 +33,6 @@ body {
 .cursor-ring {
   width: 40px;
   height: 40px;
-  border-radius: 8px !important;
   border: none;
   background: transparent;
   transform: translate3d(0, 0, 0);
@@ -68,7 +67,6 @@ body {
 
 .cursor-active .cursor {
   transform: translate3d(0, 0, 0) scale(1.8);
-  background: rgba(var(--text), 0.9);
 }
 
 .cursor-active .cursor-ring {

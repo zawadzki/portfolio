@@ -24,6 +24,10 @@ body {
   background-size: auto, auto, auto;
   color: var(--text);
   line-height: 1.6;
+
+  @media (max-width: 1024px) {
+    line-height: 1.3;
+  }
 }
 
 

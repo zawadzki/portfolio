@@ -185,7 +185,7 @@ if (isHoverCapable) {
   };
 
   const magneticTargets = Array.from(
-    document.querySelectorAll<HTMLElement>("a, button")
+      document.querySelectorAll<HTMLElement>("a, button")
   );
 
   magneticTargets.forEach((el) => {
@@ -200,7 +200,7 @@ if (isHoverCapable) {
   window.addEventListener("mousemove", onMove, { passive: true });
   window.addEventListener("wheel", onWheel, { passive: true });
   window.addEventListener("mousedown", () =>
-    document.body.classList.add("cursor-pressed")
+      document.body.classList.add("cursor-pressed")
   );
   window.addEventListener("mouseup", () => {
     document.body.classList.remove("cursor-pressed");
@@ -217,12 +217,34 @@ if (isHoverCapable) {
     stopAnimation();
   });
 
+  const clearReticuleState = () => {
+    if (targetEl) {
+      resetTarget(targetEl);
+    } else {
+      setTargetState(false);
+    }
+    setActive(false);
+    cachedTargetRect = null;
+  };
+
+  window.addEventListener("blur", () => {
+    clearReticuleState();
+  });
+
+  window.addEventListener("focus", () => {
+    clearReticuleState();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    clearReticuleState();
+  });
+
   window.addEventListener(
-    "scroll",
-    () => {
-      cachedTargetRect = null;
-    },
-    { passive: true }
+      "scroll",
+      () => {
+        cachedTargetRect = null;
+      },
+      { passive: true }
   );
 
   window.addEventListener("resize", () => {

@@ -5,7 +5,7 @@ import { lenis } from "./lenis";
 const container = document.getElementById("scene");
 
 const isMesh = (obj: THREE.Object3D): obj is THREE.Mesh =>
-  (obj as THREE.Mesh).isMesh === true;
+  (obj as THREE.Mesh).isMesh;
 
 if (container) {
   const renderer = new THREE.WebGLRenderer({
@@ -129,19 +129,38 @@ if (container) {
     new THREE.Vector3(0.0, -2.0, 4),
   ]);
 
-  const targetPath = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(-3.0, 0.4, -1.0),
-    new THREE.Vector3(4.0, 0.2, -3.0),
-    new THREE.Vector3(6.0, 0.1, 0.0),
-    new THREE.Vector3(0.2, 0.2, 0.0),
-    new THREE.Vector3(0.0, -0.7, -3.0),
-  ]);
+  const buildTargetPath = (isMobile: boolean) =>
+    new THREE.CatmullRomCurve3(
+      isMobile
+        ? [
+            new THREE.Vector3(0.0, 0.0, -1.0),
+            new THREE.Vector3(1.0, 0.2, -3.0),
+            new THREE.Vector3(2.0, 0.1, 0.0),
+            new THREE.Vector3(0.2, 0.2, 0.0),
+            new THREE.Vector3(0.0, -0.7, -3.0),
+          ]
+        : [
+            new THREE.Vector3(-3.0, 0.4, -1.0),
+            new THREE.Vector3(4.0, 0.2, -3.0),
+            new THREE.Vector3(6.0, 0.1, 0.0),
+            new THREE.Vector3(0.2, 0.2, 0.0),
+            new THREE.Vector3(0.0, -1.4, -3.0),
+          ]
+    );
+
+  let isMobileTarget = window.innerWidth <= 690;
+  let targetPath = buildTargetPath(isMobileTarget);
 
   const clock = new THREE.Clock();
 
   const handleResize = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
+    const nextIsMobile = width <= 690;
+    if (nextIsMobile !== isMobileTarget) {
+      isMobileTarget = nextIsMobile;
+      targetPath = buildTargetPath(isMobileTarget);
+    }
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);

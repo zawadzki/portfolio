@@ -6,6 +6,10 @@
     flex-direction: column;
   }
 
+  @media (max-width: 690px) {
+    margin-top: 5rem;
+  }
+
   h1 {
     padding-right: 5rem;
     @media (max-width: 1024px) {

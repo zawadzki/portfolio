@@ -437,13 +437,13 @@ export const contactData = {
   subtitle: "Always open to new projects and conversations.",
   buttons: [
     {
-      href: "mailto:hello@zawdam.dev",
-      label: "say hi",
-      iconClass: "icon-hand",
+      href: "https://www.linkedin.com/in/zawdam/",
+      label: "linkedin",
+      iconClass: "icon-linkedin",
     },
     {
       href: "https://github.com/zawadzki?tab=repositories",
-      label: "my repo",
+      label: "github",
       iconClass: "icon-github",
     },
   ],
