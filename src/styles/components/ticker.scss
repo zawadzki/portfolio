@@ -9,9 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in oklch, var(--bg) 80%, transparent);
-  backdrop-filter: blur(10px);
-  z-index: 10;
+  z-index: -1;
 }
 
 .ticker-label {
