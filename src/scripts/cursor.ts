@@ -21,6 +21,7 @@ if (isHoverCapable) {
   let y = window.innerHeight / 2;
   let tx = x;
   let ty = y;
+  let lastPointer: { x: number; y: number } | null = null;
   let targetEl: HTMLElement | null = null;
 
   const speed = 0.3;
@@ -120,10 +121,25 @@ if (isHoverCapable) {
     requestAnimationFrame(animate);
   };
 
-  const onMove = (event: MouseEvent) => {
-    tx = event.clientX;
-    ty = event.clientY;
+  const updatePointer = (xPos: number, yPos: number) => {
+    tx = xPos;
+    ty = yPos;
     setCursorVisible(true);
+  };
+
+  const onMove = (event: MouseEvent) => {
+    lastPointer = { x: event.clientX, y: event.clientY };
+    updatePointer(event.clientX, event.clientY);
+  };
+
+  const onWheel = () => {
+    if (!lastPointer) {
+      return;
+    }
+    if (targetEl) {
+      resetTarget(targetEl);
+    }
+    updatePointer(lastPointer.x, lastPointer.y);
   };
 
   const updateMagnetic = (event: MouseEvent, el: HTMLElement) => {
@@ -152,6 +168,7 @@ if (isHoverCapable) {
   });
 
   window.addEventListener("mousemove", onMove, { passive: true });
+  window.addEventListener("wheel", onWheel, { passive: true });
   window.addEventListener("mousedown", () =>
     document.body.classList.add("cursor-pressed")
   );

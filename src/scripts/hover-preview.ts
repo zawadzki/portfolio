@@ -30,6 +30,7 @@ const initFeaturedHover = (container: HTMLElement) => {
   const edgePadding = 16;
   let hoverWidth = 0;
   let hoverHeight = 0;
+  let lastPointer: { x: number; y: number } | null = null;
 
   const setImage = (src: string | null) => {
     if (!src) return;
@@ -54,6 +55,20 @@ const initFeaturedHover = (container: HTMLElement) => {
 
   let swapTimeout: number | null = null;
 
+  const updateTargetFromPoint = (x: number, y: number) => {
+    const now = performance.now();
+    const delta = Math.max(16, now - lastMove);
+    const nextX = x + offsetX;
+    const nextY = y + offsetY;
+    velocityX = (nextX - targetX) / delta;
+    velocityY = (nextY - targetY) / delta;
+    const clamped = clampPosition(nextX, nextY);
+    targetX = clamped.x;
+    targetY = clamped.y;
+    lastMove = now;
+    hover.classList.add("is-moving");
+  };
+
   const activate = (item: HTMLElement, event?: PointerEvent) => {
     const src =
       item.getAttribute("data-hover-image") ||
@@ -65,14 +80,10 @@ const initFeaturedHover = (container: HTMLElement) => {
       swapTimeout = null;
     }
     if (event) {
-      const nextX = event.clientX + offsetX;
-      const nextY = event.clientY + offsetY;
-      const clamped = clampPosition(nextX, nextY);
-      targetX = clamped.x;
-      targetY = clamped.y;
-      currentX = clamped.x;
-      currentY = clamped.y;
-      lastMove = performance.now();
+      lastPointer = { x: event.clientX, y: event.clientY };
+      updateTargetFromPoint(event.clientX, event.clientY);
+      currentX = targetX;
+      currentY = targetY;
     }
     if (shouldSwap) {
       hover.classList.remove("is-active");
@@ -100,17 +111,24 @@ const initFeaturedHover = (container: HTMLElement) => {
   };
 
   const onMove = (event: PointerEvent) => {
-    const now = performance.now();
-    const delta = Math.max(16, now - lastMove);
-    const nextX = event.clientX + offsetX;
-    const nextY = event.clientY + offsetY;
-    velocityX = (nextX - targetX) / delta;
-    velocityY = (nextY - targetY) / delta;
-    const clamped = clampPosition(nextX, nextY);
-    targetX = clamped.x;
-    targetY = clamped.y;
-    lastMove = now;
-    hover.classList.add("is-moving");
+    lastPointer = { x: event.clientX, y: event.clientY };
+    updateTargetFromPoint(event.clientX, event.clientY);
+  };
+
+  const onWheel = () => {
+    if (!isActive || !lastPointer) {
+      return;
+    }
+    updateTargetFromPoint(lastPointer.x, lastPointer.y);
+    const hovered = document.elementFromPoint(lastPointer.x, lastPointer.y) as
+      | HTMLElement
+      | null;
+    const hoverItem = hovered?.closest(".hover-item") as HTMLElement | null;
+    if (hoverItem && container.contains(hoverItem)) {
+      activate(hoverItem);
+    } else {
+      deactivate();
+    }
   };
 
   const tick = (time: number) => {
@@ -150,6 +168,8 @@ const initFeaturedHover = (container: HTMLElement) => {
     item.addEventListener("pointerleave", deactivate);
     item.addEventListener("pointermove", onMove);
   });
+
+  window.addEventListener("wheel", onWheel, { passive: true });
 };
 
 document.querySelectorAll<HTMLElement>(".is-hover").forEach((container) => {
