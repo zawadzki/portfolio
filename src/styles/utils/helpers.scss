@@ -36,12 +36,24 @@
   }
 }
 
+.pt-0 {
+  padding-top: 0;
+}
+
+.pb-5 {
+  padding-bottom: 5rem;
+
+  @media (max-width: 690px) {
+    padding-bottom: 2rem;
+  }
+}
+
 .mt-2 {
   margin-top: 2rem;
 }
 
 .full-h {
-  height: calc(100dvh - 92px);
+  min-height: calc(100dvh - 92px);
 }
 
 .flex {

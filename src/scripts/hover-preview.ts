@@ -31,6 +31,10 @@ const initFeaturedHover = (container: HTMLElement) => {
   let hoverWidth = 0;
   let hoverHeight = 0;
   let lastPointer: { x: number; y: number } | null = null;
+  let pointerRaf: number | null = null;
+  let animRaf: number | null = null;
+  let lastItem: HTMLElement | null = null;
+  let lastSrc: string | null = null;
 
   const setImage = (src: string | null) => {
     if (!src) return;
@@ -69,12 +73,44 @@ const initFeaturedHover = (container: HTMLElement) => {
     hover.classList.add("is-moving");
   };
 
+  const startAnimation = () => {
+    if (animRaf === null) {
+      animRaf = requestAnimationFrame(tick);
+    }
+  };
+
+  const stopAnimation = () => {
+    if (animRaf !== null) {
+      cancelAnimationFrame(animRaf);
+      animRaf = null;
+    }
+  };
+
   const activate = (item: HTMLElement, event?: PointerEvent) => {
+    if (item === lastItem && isActive) {
+      if (event) {
+        lastPointer = { x: event.clientX, y: event.clientY };
+        updateTargetFromPoint(event.clientX, event.clientY);
+      }
+      startAnimation();
+      return;
+    }
     const src =
       item.getAttribute("data-hover-image") ||
       container.getAttribute("data-hover-image");
+    if (src && src === lastSrc && isActive) {
+      lastItem = item;
+      if (event) {
+        lastPointer = { x: event.clientX, y: event.clientY };
+        updateTargetFromPoint(event.clientX, event.clientY);
+      }
+      startAnimation();
+      return;
+    }
     const shouldSwap = Boolean(src && !img.src.endsWith(src));
     isActive = true;
+    lastItem = item;
+    lastSrc = src ?? null;
     if (swapTimeout) {
       window.clearTimeout(swapTimeout);
       swapTimeout = null;
@@ -98,27 +134,41 @@ const initFeaturedHover = (container: HTMLElement) => {
       hover.classList.add("is-active");
       hover.classList.remove("is-exit");
     }
+    startAnimation();
   };
 
   const deactivate = () => {
     isActive = false;
+    lastItem = null;
     if (swapTimeout) {
       window.clearTimeout(swapTimeout);
       swapTimeout = null;
     }
     hover.classList.remove("is-active");
     hover.classList.add("is-exit");
+    stopAnimation();
   };
 
   const onMove = (event: PointerEvent) => {
     lastPointer = { x: event.clientX, y: event.clientY };
-    updateTargetFromPoint(event.clientX, event.clientY);
+    if (pointerRaf !== null) {
+      return;
+    }
+    pointerRaf = window.requestAnimationFrame(() => {
+      if (!lastPointer) {
+        pointerRaf = null;
+        return;
+      }
+      updateTargetFromPoint(lastPointer.x, lastPointer.y);
+      pointerRaf = null;
+    });
   };
 
   const onWheel = () => {
     if (!isActive || !lastPointer) {
       return;
     }
+    startAnimation();
     updateTargetFromPoint(lastPointer.x, lastPointer.y);
     const hovered = document.elementFromPoint(lastPointer.x, lastPointer.y) as
       | HTMLElement
@@ -153,10 +203,9 @@ const initFeaturedHover = (container: HTMLElement) => {
     hover.style.setProperty("--skew-x", `${skewX}deg`);
     hover.style.setProperty("--skew-y", `${skewY}deg`);
 
-    requestAnimationFrame(tick);
+    animRaf = requestAnimationFrame(tick);
   };
 
-  requestAnimationFrame(tick);
   updateSize();
   window.addEventListener("resize", updateSize);
   img.addEventListener("load", updateSize);

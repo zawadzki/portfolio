@@ -22,7 +22,10 @@ if (isHoverCapable) {
   let tx = x;
   let ty = y;
   let lastPointer: { x: number; y: number } | null = null;
+  let pointerRaf: number | null = null;
+  let animRaf: number | null = null;
   let targetEl: HTMLElement | null = null;
+  let cachedTargetRect: DOMRect | null = null;
 
   const speed = 0.3;
   const cursorSize = 5;
@@ -83,6 +86,7 @@ if (isHoverCapable) {
     setActive(false);
     setTargetState(false);
     targetEl = null;
+    cachedTargetRect = null;
     el.style.transform = "translate3d(0, 0, 0)";
     el.classList.remove("is-magnetic");
   };
@@ -91,11 +95,12 @@ if (isHoverCapable) {
     setActive(true);
     setTargetState(true);
     targetEl = el;
+    cachedTargetRect = el.getBoundingClientRect();
   };
 
   const updateRingPosition = () => {
     if (targetEl) {
-      const rect = targetEl.getBoundingClientRect();
+      const rect = cachedTargetRect ?? targetEl.getBoundingClientRect();
       const width = rect.width + ringPadding * 2;
       const height = rect.height + ringPadding * 2;
       const centerX = rect.left + rect.width / 2;
@@ -118,18 +123,42 @@ if (isHoverCapable) {
     y += (ty - y) * speed;
     cursor.style.transform = `translate3d(${tx - cursorSize / 2}px, ${ty - cursorSize / 2}px, 0)`;
     updateRingPosition();
-    requestAnimationFrame(animate);
+    animRaf = requestAnimationFrame(animate);
+  };
+
+  const startAnimation = () => {
+    if (animRaf === null) {
+      animRaf = requestAnimationFrame(animate);
+    }
+  };
+
+  const stopAnimation = () => {
+    if (animRaf !== null) {
+      cancelAnimationFrame(animRaf);
+      animRaf = null;
+    }
   };
 
   const updatePointer = (xPos: number, yPos: number) => {
     tx = xPos;
     ty = yPos;
     setCursorVisible(true);
+    startAnimation();
   };
 
   const onMove = (event: MouseEvent) => {
     lastPointer = { x: event.clientX, y: event.clientY };
-    updatePointer(event.clientX, event.clientY);
+    if (pointerRaf !== null) {
+      return;
+    }
+    pointerRaf = requestAnimationFrame(() => {
+      if (!lastPointer) {
+        pointerRaf = null;
+        return;
+      }
+      updatePointer(lastPointer.x, lastPointer.y);
+      pointerRaf = null;
+    });
   };
 
   const onWheel = () => {
@@ -144,6 +173,7 @@ if (isHoverCapable) {
 
   const updateMagnetic = (event: MouseEvent, el: HTMLElement) => {
     const rect = el.getBoundingClientRect();
+    cachedTargetRect = rect;
     const relX = event.clientX - rect.left - rect.width / 2;
     const relY = event.clientY - rect.top - rect.height / 2;
     const strength = 0.25;
@@ -183,6 +213,20 @@ if (isHoverCapable) {
     setCursorVisible(false);
     targetEl = null;
     setTargetState(false);
+    cachedTargetRect = null;
+    stopAnimation();
+  });
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      cachedTargetRect = null;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", () => {
+    cachedTargetRect = null;
   });
 
   animate();

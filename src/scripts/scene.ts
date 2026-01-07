@@ -4,6 +4,9 @@ import { lenis } from "./lenis";
 
 const container = document.getElementById("scene");
 
+const isMesh = (obj: THREE.Object3D): obj is THREE.Mesh =>
+  (obj as THREE.Mesh).isMesh === true;
+
 if (container) {
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
@@ -62,7 +65,7 @@ if (container) {
 
         if (polygonOffset) {
           model.traverse((child) => {
-            if (child instanceof THREE.Mesh) {
+            if (isMesh(child)) {
               const material = child.material;
               const applyOffset = (mat: THREE.Material) => {
                 mat.polygonOffset = true;
@@ -93,16 +96,27 @@ if (container) {
   let scrollProgress = 0;
   let pointerX = 0;
   let pointerY = 0;
+  let lastPointerX = window.innerWidth / 2;
+  let lastPointerY = window.innerHeight / 2;
+  let pointerRaf: number | null = null;
 
   lenis.on("scroll", ({ progress }) => {
     scrollProgress = progress;
   });
 
   const handlePointer = (event: PointerEvent) => {
-    const x = event.clientX / window.innerWidth;
-    const y = event.clientY / window.innerHeight;
-    pointerX = (x - 0.5) * 2;
-    pointerY = (y - 0.5) * 2;
+    lastPointerX = event.clientX;
+    lastPointerY = event.clientY;
+    if (pointerRaf !== null) {
+      return;
+    }
+    pointerRaf = window.requestAnimationFrame(() => {
+      const x = lastPointerX / window.innerWidth;
+      const y = lastPointerY / window.innerHeight;
+      pointerX = (x - 0.5) * 2;
+      pointerY = (y - 0.5) * 2;
+      pointerRaf = null;
+    });
   };
 
   window.addEventListener("pointermove", handlePointer, { passive: true });

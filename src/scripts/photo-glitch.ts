@@ -124,13 +124,7 @@ if (figures.length) {
     let isVisible = false;
     let targetIntensity = 0;
     const baseIntensity = prefersReduced ? 0 : 0.85;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(figure);
+    let rafId: number | null = null;
 
     const animate = () => {
       uniforms.uTime.value = clock.getElapsedTime();
@@ -141,9 +135,34 @@ if (figures.length) {
         0.08
       );
       renderer.render(scene, camera);
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
-    animate();
+    const stop = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      uniforms.uIntensity.value = 0;
+    };
+
+    const start = () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(animate);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          start();
+        } else {
+          stop();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(figure);
   });
 }
