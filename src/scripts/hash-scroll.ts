@@ -1,7 +1,8 @@
-// @ts-ignore
 const prefersReduced = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
 ).matches;
+
+export {};
 
 const scrollToHash = (hash: string) => {
   const id = hash.replace(/^#/, "");

@@ -1,7 +1,8 @@
-// @ts-ignore
 const prefersReduced = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
 ).matches;
+
+export {};
 
 const initFeaturedHover = (container: HTMLElement) => {
   const hover = document.createElement("div");

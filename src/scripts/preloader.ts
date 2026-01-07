@@ -10,3 +10,5 @@ window.addEventListener("load", () => {
     window.requestAnimationFrame(finish);
   }, 200);
 });
+
+export {};
