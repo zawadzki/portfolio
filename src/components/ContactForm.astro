@@ -1,0 +1,84 @@
+---
+type Props = {
+  action?: string;
+  buttonLabel?: string;
+  buttonIconClass?: string;
+};
+
+const {
+  action = "/contact.php",
+  buttonLabel = "write a short brief",
+  buttonIconClass,
+} = Astro.props;
+---
+
+<form class="contact-form" method="post" action={action} novalidate>
+  <div class="contact-form__row">
+    <label class="contact-form__field">
+      <span>Name</span>
+      <input
+        type="text"
+        name="name"
+        autocomplete="name"
+        required
+        minlength="2"
+        maxlength="80"
+      />
+    </label>
+    <label class="contact-form__field">
+      <span>Email</span>
+      <input
+        type="email"
+        name="email"
+        autocomplete="email"
+        required
+        maxlength="120"
+      />
+    </label>
+  </div>
+  <label class="contact-form__field">
+    <span>Message</span>
+    <textarea
+      name="message"
+      rows="5"
+      required
+      minlength="10"
+      maxlength="2000"
+    ></textarea>
+  </label>
+  <input
+    class="contact-form__honey"
+    type="text"
+    name="company"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+  />
+  <input type="hidden" name="page" value={Astro.url.pathname} />
+  <button class="button button-primary" type="submit">
+    {buttonIconClass ? <i class={`icon ${buttonIconClass}`}></i> : null}
+    {buttonLabel}
+  </button>
+  <p class="contact-form__status" data-contact-status hidden></p>
+</form>
+
+<script>
+  const statusEl = document.querySelector("[data-contact-status]");
+  if (statusEl) {
+    const params = new URLSearchParams(window.location.search);
+    const isSent = params.has("sent");
+    const isError = params.has("error");
+    if (isSent || isError) {
+      statusEl.hidden = false;
+      statusEl.dataset.state = isSent ? "success" : "error";
+      statusEl.textContent = isSent
+        ? "Thanks! Your message has been sent."
+        : "Sorry, something went wrong. Please try again.";
+      params.delete("sent");
+      params.delete("error");
+      const query = params.toString();
+      const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+      window.history.replaceState({}, "", nextUrl);
+    }
+  }
+</script>

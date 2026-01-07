@@ -1,0 +1,19 @@
+---
+const { dataLayerName = "dataLayer" } = Astro.props;
+const id = import.meta.env.PUBLIC_GTM_ID;
+
+if (!id) {
+  throw new Error("Missing PUBLIC_GTM_ID for Google Tag Manager.");
+}
+
+const dataLayerParam = dataLayerName !== "dataLayer" ? `&l=${dataLayerName}` : "";
+---
+
+<noscript>
+  <iframe
+    src={`https://www.googletagmanager.com/ns.html?id=${id}${dataLayerParam}`}
+    height="0"
+    width="0"
+    style="display:none;visibility:hidden"
+  ></iframe>
+</noscript>

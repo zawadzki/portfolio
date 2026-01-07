@@ -46,7 +46,7 @@
     }
   }
 
-  p {
+  p:not(.contact-form__status) {
     font-size: 1.85rem;
     font-weight: var(--light);
     letter-spacing: var(--letter-spacing);

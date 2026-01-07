@@ -1,6 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { featuredItems } from "../../data/homepage";
+import ContactForm from "../../components/ContactForm.astro";
 
 export function getStaticPaths() {
   return featuredItems.map((item) => ({
@@ -104,12 +105,7 @@ const title = `${item.title} — Portfolio`;
       <div class="description">
         <p>From concept to launch — thoughtful, reliable delivery.</p>
       </div>
-      <div class="buttons">
-        <a class="button button-primary mt-2" href="mailto:hello@zawdam.dev">
-          <i class="icon icon-mail"></i>
-          write a short brief
-        </a>
-      </div>
+      <ContactForm buttonLabel="write a short brief" buttonIconClass="icon-mail"/>
     </div>
   </section>
 </Base>

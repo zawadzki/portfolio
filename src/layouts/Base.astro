@@ -1,16 +1,24 @@
 ---
 import "../styles/index.scss";
+import GTMHead from "../components/gtm/GTMHead.astro";
+import GTMBody from "../components/gtm/GTMBody.astro";
 
 const scriptSrc = import.meta.env.DEV
   ? "/src/scripts/main.ts"
   : "/assets/main.js";
 const isHome = Astro.url.pathname === "/";
-const homeHash = (hash) => (isHome ? hash : `/${hash}`);
+const homeHash = (hash: string) => (isHome ? hash : `/${hash}`);
+const isProd = import.meta.env.PROD;
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
 
 const {
   title = "Damian Zawadzki — Full-stack Dev.",
   description = "Blending creativity with technology to create innovative solutions.",
 } = Astro.props;
+
+if (!gtmId) {
+  throw new Error("Missing PUBLIC_GTM_ID for Google Tag Manager.");
+}
 ---
 <!doctype html>
 <html lang="en" class="is-preloading">
@@ -39,14 +47,17 @@ const {
     <meta property="twitter:title" content={title}>
     <meta property="twitter:description" content={description}>
     <meta property="og:image" content="/social-img.jpg">
+    {isProd && <GTMHead />}
   </head>
   <body>
+  {isProd && <GTMBody />}
+
     <div class="preloader" aria-hidden="true">
-      <span class="preloader__line"></span>
+      <span class="preloader-line"></span>
     </div>
 
     <div class="page">
-      <header class="site-header px-5" data-reveal>
+      <header class="site-header" data-reveal>
         <div class="header-inner">
           <a class="logo" href="/">damian zawadzki</a>
           <nav class="nav" aria-label="Primary">
@@ -61,11 +72,11 @@ const {
         <slot />
       </main>
 
-      <footer class="site-footer px-5" data-reveal>
+      <footer class="site-footer" data-reveal>
         <div class="footer-inner">
           <p class="footer-title">&copy; 2026</p>
           <div class="footer-links">
-            <a href="mailto:hello@yourname.com">hello <i class="icon icon-at"></i> zawdam.dev</a>
+            <a href="mailto:hello@zawdam.dev">hello <i class="icon icon-at"></i> zawdam.dev</a>
             <a href="https://www.linkedin.com/in/zawdam/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a href="https://github.com/zawadzki" target="_blank" rel="noreferrer">GitHub</a>
           </div>

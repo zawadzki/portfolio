@@ -11,6 +11,8 @@ type ContactData = {
   buttons: ContactButton[];
 };
 
+import ContactForm from "./ContactForm.astro";
+
 const { data } = Astro.props;
 const { title, subtitle, buttons } = data as ContactData;
 ---

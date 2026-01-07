@@ -18,6 +18,7 @@
 @use "base/fonts";
 @use "base/icons";
 @use "base/global";
+@use "base/accessability";
 
 /* -----------------------
   Layout
@@ -47,6 +48,7 @@
 @use "components/timeline";
 @use "components/preloader";
 @use "components/blur-up";
+@use "components/contact";
 
 /* -----------------------
   Pages

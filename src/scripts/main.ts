@@ -7,3 +7,5 @@ import "./photo-glitch";
 import "./hash-scroll";
 import "./preloader";
 import "./blur-up";
+import "./input-modality";
+import "./contact-form";

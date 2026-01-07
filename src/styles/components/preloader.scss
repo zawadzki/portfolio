@@ -23,22 +23,21 @@
   pointer-events: all;
 }
 
-.preloader__line {
+.preloader-line {
   width: 160px;
   height: 2px;
   border-radius: 999px;
   background: color-mix(in oklch, var(--color-primary) 15%, transparent);
   position: relative;
   overflow: hidden;
-}
-
-.preloader__line::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--color-primary);
-  transform-origin: left center;
-  animation: preloader-scan 1.2s ease-in-out infinite;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+    transform-origin: left center;
+    animation: preloader-scan 1.2s ease-in-out infinite;
+  }
 }
 
 @keyframes preloader-scan {
