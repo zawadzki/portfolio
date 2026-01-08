@@ -26,8 +26,13 @@ const { items } = Astro.props;
           <h4 class="open-source-item-subtitle">Tech stack</h4>
           <div class="technologies">
             {item.technologies.map((technology) => (
-              <div class="technologies-item" data-tooltip={technology.label}>
-                <i class={`icon ${technology.icon}`} aria-label={technology.label}></i>
+              <div
+                class="technologies-item"
+                data-tooltip={technology.label}
+                role="img"
+                aria-label={technology.label}
+              >
+                <i class={`icon ${technology.icon}`} aria-hidden="true"></i>
               </div>
             ))}
           </div>
@@ -40,7 +45,7 @@ const { items } = Astro.props;
               class={`button button-primary open-source-item-subtitle${item.hoverImage ? " hover-item" : ""}`}
               data-hover-image={item.hoverImage}
             >
-              <i class="icon icon-github"></i> {item.link.label}
+              <i class="icon icon-github" aria-hidden="true"></i> {item.link.label}
             </a>
           </div>
         </div>

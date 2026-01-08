@@ -21,15 +21,15 @@ const { title, subtitle, buttons } = data as ContactData;
     <h2>{title}</h2>
     <div class="description-status">
       <div class="inline-grid">
-        <div class="status status-success animate-ping"></div>
-        <div class="status status-success"></div>
+        <div class="status status-success animate-ping" aria-hidden="true"></div>
+        <div class="status status-success" aria-hidden="true"></div>
       </div>
       <p>{subtitle}</p>
     </div>
     <div class="buttons">
       {buttons.map((button) => (
         <a class="button button-primary mt-2" href={button.href} target="_blank" rel="noreferrer">
-          <i class={`icon ${button.iconClass}`}></i> {button.label}
+          <i class={`icon ${button.iconClass}`} aria-hidden="true"></i> {button.label}
         </a>
       ))}
     </div>

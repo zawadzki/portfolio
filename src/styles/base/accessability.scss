@@ -1,10 +1,16 @@
 html {
   &.using-keyboard {
-    input, textarea, select, button, a {
-      &:focus {
-        outline: 2px solid var(--color-accent);
-        outline-offset: 5px;
-      }
+    *:focus {
+      corner-shape: squircle;
+      border-radius: var(--radius-selector);
+      outline: 2px solid var(--color-info);
+      transition: none !important;
+      outline-offset: 5px;
+    }
+
+    .cursor,
+    .cursor-ring {
+      display: none !important;
     }
   }
 
@@ -14,5 +20,32 @@ html {
         outline: 0;
       }
     }
+  }
+}
+
+.skip-link {
+  top: 0;
+  left: 0; right: 0;
+  position: absolute;
+  min-width: 250px;
+  corner-shape: squircle;
+  border: 2px solid transparent;
+  border-radius:  0 0 var(--radius-selector) var(--radius-selector) !important;
+  background: radial-gradient(ellipse closest-corner at 50% 50%, oklch(from var(--color-info) l 0.1 h) 55%, oklch(from var(--color-info) l 0.15 h)) 100%;
+  inset: -100% 5rem auto 5rem;
+  text-decoration: none;
+  font-weight: var(--medium);
+  letter-spacing: var(--letter-spacing);
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  max-width: 315px;
+  margin: 0 auto;
+  color: var(--text);
+  padding: 1rem 1.5rem;
+  z-index: 15;
+
+  &:focus {
+    inset: auto 5rem auto 5rem;
   }
 }

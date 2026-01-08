@@ -18,7 +18,7 @@ const title = `${item.title} — Portfolio`;
   <section class="section px-5 py-10">
     <div class="portfolio">
       <div class="portfolio-col">
-        <div class="portfolio-col-sticky">
+        <div class="portfolio-col-sticky" id="work" tabindex="-1">
           <div class="lead" data-reveal>
             <h1>{item.title}</h1>
           </div>
@@ -47,8 +47,14 @@ const title = `${item.title} — Portfolio`;
                 <h4 class="open-source-item-subtitle" data-reveal>Technologies used</h4>
                 <div class="technologies" data-reveal>
                   {item.technologies.map((technology) => (
-                      <div class="technologies-item" data-tooltip={technology.label} data-tooltip-invert>
-                        <i class={`icon ${technology.icon}`} aria-label={technology.label}></i>
+                      <div
+                        class="technologies-item"
+                        data-tooltip={technology.label}
+                        data-tooltip-invert
+                        role="img"
+                        aria-label={technology.label}
+                      >
+                        <i class={`icon ${technology.icon}`} aria-hidden="true"></i>
                       </div>
                   ))}
                 </div>
@@ -76,7 +82,7 @@ const title = `${item.title} — Portfolio`;
                 {item.externalUrl && (
                   <a class="button button-primary mt-2" href={item.externalUrl} target="_blank" rel="noreferrer">
                     visit website
-                    <i class="icon icon-external"></i>
+                    <i class="icon icon-external" aria-hidden="true"></i>
                   </a>
                 )}
               </div>

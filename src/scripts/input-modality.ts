@@ -18,4 +18,4 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 root.classList.add("using-mouse");
 window.addEventListener("keydown", handleKeydown);
-window.addEventListener("pointerdown", setMouse);
+window.addEventListener("mousemove", setMouse);

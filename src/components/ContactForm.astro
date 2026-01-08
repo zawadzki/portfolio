@@ -56,10 +56,19 @@ const {
   />
   <input type="hidden" name="page" value={Astro.url.pathname} />
   <button class="button button-primary" type="submit">
-    {buttonIconClass ? <i class={`icon ${buttonIconClass}`}></i> : null}
+    {buttonIconClass ? (
+      <i class={`icon ${buttonIconClass}`} aria-hidden="true"></i>
+    ) : null}
     {buttonLabel}
   </button>
-  <p class="contact-form__status" data-contact-status hidden></p>
+  <p
+    class="contact-form__status"
+    data-contact-status
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    hidden
+  ></p>
 </form>
 
 <script>

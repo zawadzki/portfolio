@@ -14,6 +14,14 @@ const scrollToHash = (hash: string) => {
     behavior: prefersReduced ? "auto" : "smooth",
     block: "start",
   });
+
+  const isFocusable = target.matches(
+    'a, button, input, textarea, select, summary, [tabindex]'
+  );
+  if (!isFocusable) {
+    target.setAttribute("tabindex", "-1");
+  }
+  target.focus({ preventScroll: true });
 };
 
 window.addEventListener("hashchange", () => {
