@@ -18,10 +18,10 @@ html {
 body {
   font-family: var(--font-body), sans-serif;
   background-color: var(--bg);
-  background-image:  url("/light.webp"), url("/pattern.svg"), url("/noise.png");
-  background-repeat: no-repeat, repeat, repeat;
-  background-position: top center, center, center;
-  background-size: auto, auto, auto;
+  background-image:  url("/pattern.svg"), url("/noise.png");
+  background-repeat: repeat, repeat;
+  background-position: center, center;
+  background-size: auto, auto;
   color: var(--text);
   line-height: 1.6;
 
