@@ -8,7 +8,7 @@ type OpenSourceItem = {
   title: string;
   description: string;
   hoverImage?: string;
-  technologies: string[];
+  technologies: { icon: string; label: string }[];
   link: OpenSourceLink;
 };
 
@@ -18,20 +18,16 @@ const { items } = Astro.props;
 <section class="section px-5 py-10 flex items-center">
   <div class="open-source is-hover" data-reveal-group>
     {items.map((item: OpenSourceItem) => (
-      <div
-        class={`open-source-item${item.hoverImage ? " hover-item" : ""}`}
-        data-hover-image={item.hoverImage}
-        data-reveal-item
-      >
+      <div class="open-source-item" data-reveal-item>
         <div class="open-source-item-content">
           <h3 class="open-source-item-title">{item.title}</h3>
           <p class="open-source-item-description">{item.description}</p>
           <div class="divider"></div>
           <h4 class="open-source-item-subtitle">Tech stack</h4>
           <div class="technologies">
-            {item.technologies.map((icon) => (
-              <div class="technologies-item">
-                <i class={`icon ${icon}`}></i>
+            {item.technologies.map((technology) => (
+              <div class="technologies-item" data-tooltip={technology.label}>
+                <i class={`icon ${technology.icon}`} aria-label={technology.label}></i>
               </div>
             ))}
           </div>
@@ -41,7 +37,8 @@ const { items } = Astro.props;
               href={item.link.href}
               target="_blank"
               rel="noreferrer"
-              class="button button-primary open-source-item-subtitle"
+              class={`button button-primary open-source-item-subtitle${item.hoverImage ? " hover-item" : ""}`}
+              data-hover-image={item.hoverImage}
             >
               <i class="icon icon-github"></i> {item.link.label}
             </a>

@@ -1,7 +1,7 @@
 img[data-blur-up] {
   filter: blur(18px);
   transform: scale(1.02);
-  transition: filter 0.7s ease, transform 0.7s ease;
+  transition: filter 0.7s var(--ease), transform 0.7s var(--ease);
 }
 
 img[data-blur-up].is-loaded {

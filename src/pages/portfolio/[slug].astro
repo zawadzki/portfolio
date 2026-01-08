@@ -46,10 +46,10 @@ const title = `${item.title} — Portfolio`;
               <div class="portfolio-info-footer-item">
                 <h4 class="open-source-item-subtitle" data-reveal>Technologies used</h4>
                 <div class="technologies" data-reveal>
-                  {item.technologies?.map((icon) => (
-                    <div class="technologies-item">
-                      <i class={`icon ${icon}`}></i>
-                    </div>
+                  {item.technologies.map((technology) => (
+                      <div class="technologies-item" data-tooltip={technology.label} data-tooltip-invert>
+                        <i class={`icon ${technology.icon}`} aria-label={technology.label}></i>
+                      </div>
                   ))}
                 </div>
               </div>

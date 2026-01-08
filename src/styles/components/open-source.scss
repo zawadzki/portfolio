@@ -13,7 +13,7 @@
   width: 100%;
   padding: 2rem;
   border: 1px solid var(--text);
-  transition: color .25s ease, background-color .25s ease;
+  transition: color .25s var(--ease), background-color .25s var(--ease);
 
   &:hover {
     background-color: var(--text);

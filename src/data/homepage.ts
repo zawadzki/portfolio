@@ -15,12 +15,12 @@ export const featuredItems = [
         "I built the full front‑end and back‑end for a destination‑driven portal, turning the visual system into a fast, card‑based browsing experience. I structured the content model so editors can easily publish regions, routes, and highlights. The result is a visually rich site that stays easy to scan and navigate."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -43,12 +43,12 @@ export const featuredItems = [
       "I delivered the entire front‑end and back‑end with a schedule‑first layout that makes shows, dates, and tickets effortless to find. I implemented reusable listing components and optimized the CMS flow for frequent repertory updates. The site balances strong imagery with clear hierarchy and accessibility."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -71,12 +71,12 @@ export const featuredItems = [
       "I handled the full stack build for a content‑heavy cultural site, translating bold branding into a structured, modular UI. I organized content types for events, education, and news so the team can manage updates efficiently. The experience stays clean and readable despite the depth of information."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -99,12 +99,12 @@ export const featuredItems = [
       "I built both front‑end and back‑end with an editorial focus, ensuring long‑form content remains inviting and easy to follow. I designed modular sections for news, events, and recommendations that editors can reuse without breaking layout. The site feels warm and consistent while staying performant."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -127,12 +127,12 @@ export const featuredItems = [
       "I delivered the full front‑end and back‑end for a museum site that emphasizes calm, readable content and clear visit planning. I structured events and projects so updates are straightforward and consistent. The layout supports heritage storytelling while keeping navigation simple."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -155,12 +155,12 @@ export const featuredItems = [
       "I created the full front‑end and back‑end for a program‑heavy institution, prioritizing quick filtering and easy discovery. I built flexible card and schedule modules to keep a large offering manageable. The site stays fast and accessible while showcasing diverse activities."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -183,12 +183,12 @@ export const featuredItems = [
       "I built the front‑end and back‑end for a literary platform with strong editorial presentation. I implemented flexible grids and feature modules to spotlight books, events, and highlights. The result is bold but structured, keeping content discoverable."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -211,12 +211,12 @@ export const featuredItems = [
       "I delivered the full stack build with a repertory‑first approach, making show selection and ticket access the primary flow. I implemented reusable listings and news blocks so updates stay consistent. The site remains focused and easy to navigate."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -239,12 +239,12 @@ export const featuredItems = [
       "I handled front‑end and back‑end for a performance‑focused portal, translating bold visuals into a clean, scalable content system. I built grids and archives that keep large programs organized. The experience balances strong imagery with clarity."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -267,12 +267,12 @@ export const featuredItems = [
       "I built the full front‑end and back‑end for a contemporary art venue, emphasizing event listings and strong visual storytelling. I implemented modular sections for exhibitions, news, and archives with clean editorial structure. The site stays crisp, fast, and easy to update."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -295,12 +295,12 @@ export const featuredItems = [
       "I delivered the full stack build for a community‑driven center, with a calendar‑style flow and clear categorization. I structured content so frequent announcements and classes are simple to publish. The page feels lively while remaining easy to scan."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -323,12 +323,12 @@ export const featuredItems = [
       "I built the front‑end and back‑end with a dramatic, high‑impact hero and a clear repertory schedule below. I implemented structured listings and supporting sections for news, team, and education. The experience keeps focus on performances while staying accessible and efficient."
     ],
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-sass",
-      "icon-js",
-      "icon-html5",
-      "icon-webpack",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-sass", label: "Sass" },
+      { icon: "icon-js", label: "JavaScript" },
+      { icon: "icon-html5", label: "HTML5" },
+      { icon: "icon-webpack", label: "webpack" }
     ],
     agency: {
       name: "in+ui",
@@ -344,10 +344,10 @@ export const openSourceItems = [
       "Modular WordPress framework designed for clean architecture, predictable behavior, and administration.",
     hoverImage: "/open-source/zavyn/zavyn-screen-hover.webp",
     technologies: [
-      "icon-php",
-      "icon-wordpress",
-      "icon-typescript",
-      "icon-docker",
+      { icon: "icon-php", label: "PHP" },
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-typescript", label: "TypeScript" },
+      { icon: "icon-docker", label: "Docker" },
     ],
     link: {
       href: "https://github.com/zawadzki/zavyn",
@@ -360,11 +360,11 @@ export const openSourceItems = [
       "Goodreads inspired social book-focused app with reviews, shelves, and discovery.",
     hoverImage: "/open-source/nukbook/nukbook-screen-hover.webp",
     technologies: [
-      "icon-python",
-      "icon-fastapi",
-      "icon-react",
-      "icon-nextjs",
-      "icon-tailwindcss",
+      { icon: "icon-python", label: "Python" },
+      { icon: "icon-fastapi", label: "FastAPI" },
+      { icon: "icon-react", label: "React" },
+      { icon: "icon-nextjs", label: "NextJS" },
+      { icon: "icon-tailwindcss", label: "Tailwind" },
     ],
     link: {
       href: "https://github.com/zawadzki/nukbook",
@@ -376,10 +376,10 @@ export const openSourceItems = [
     description:
       "Opinionated boilerplate for WordPress, great starting point for developing custom themes.",
     technologies: [
-      "icon-wordpress",
-      "icon-typescript",
-      "icon-vitejs",
-      "icon-docker",
+      { icon: "icon-wordpress", label: "WordPress" },
+      { icon: "icon-typescript", label: "TypeScript" },
+      { icon: "icon-vitejs", label: "ViteJS" },
+      { icon: "icon-docker", label: "Docker" },
     ],
     link: {
       href: "https://github.com/zawadzki/wp-boilerplate",

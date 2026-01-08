@@ -23,7 +23,7 @@
   --letter-spacing: 0.08em;
   --radius-selector: 1rem;
   --radius-field: 0rem;
-  --radius-box: 0rem;
+  --radius-box: 0.25rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
@@ -44,4 +44,10 @@
   --text-subdued: color-mix(in oklch, var(--text) 75%, transparent);
   --active-links: var(--color-primary-content);
   --border-color: var(--color-base-content);
+
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-dynamic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-elastic: cubic-bezier(0.04, 1, 0.7, 1);
 }

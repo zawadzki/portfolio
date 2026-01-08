@@ -23,10 +23,10 @@
     scale(0.6)
     skew(var(--skew-x, 0deg), var(--skew-y, 0deg));
   clip-path: inset(50% 50% 50% 50%);
-  transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1),
-    clip-path 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-  background: #0d0f1a;
+  transition: transform 1s var(--ease-out),
+    clip-path 0.65s var(--ease-dynamic);
+  box-shadow: 0 24px 60px var(--ease-out);
+  background: var(--bg);
   will-change: transform, clip-path;
 }
 

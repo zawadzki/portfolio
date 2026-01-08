@@ -1,0 +1,63 @@
+[data-tooltip] {
+  --tt-off: calc(100% + .5rem);
+  --tt-tail: calc(100% + 1px + .25rem);
+  --mask-tooltip: url("/tooltip-mask.svg");
+  --tt-text: var(--text);
+  --tt-bg: var(--bg);
+
+  display: inline-block;
+  position: relative;
+
+  &[data-tooltip-invert] {
+    --tt-text: var(--bg);
+    --tt-bg: var(--text);
+  }
+
+  &:hover {
+    &:before,
+    &:after {
+      --tt-pos: 0rem;
+      opacity: 1;
+    }
+  }
+
+  &:before,
+  &:after {
+    opacity: 0;
+    position: absolute;
+    transform: translate(-50%) translateY(var(--tt-pos, .25rem));
+    transition: opacity .2s var(--ease), transform .2s var(--ease);
+  }
+
+  &:before {
+    border-radius: var(--radius-box);
+    text-align: center;
+    white-space: normal;
+    max-width: 20rem;
+    color: var(--tt-text);
+    background-color: var(--tt-bg);
+    pointer-events: none;
+    content: attr(data-tooltip);
+    width: max-content;
+    padding-block: .25rem;
+    padding-inline: .5rem;
+    font-size: .75rem;
+    letter-spacing: var(--letter-spacing);
+    line-height: 1;
+    inset: auto auto var(--tt-off) 50%;
+    z-index: 2;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    background-color: var(--tt-bg);
+    width: .625rem;
+    height: .25rem;
+    pointer-events: none;
+    mask-position: -1px 0;
+    mask-repeat: no-repeat;
+    mask-image: var(--mask-tooltip);
+    inset: auto auto var(--tt-tail) 50%;
+  }
+}
