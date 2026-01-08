@@ -13,7 +13,6 @@
 
 .featured-item {
   font-size: 0;
-  mix-blend-mode: exclusion;
   width: calc(33.333% - 5px);
 
   @media (max-width: 690px) {

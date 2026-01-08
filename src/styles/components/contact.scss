@@ -41,10 +41,11 @@
     corner-shape: squircle;
     border: 2px solid transparent;
     border-radius: var(--radius-selector);
-    background: radial-gradient(circle, var(--color-base-200) 65%, var(--color-secondary) 100%) padding-box, linear-gradient(var(--angle), var(--color-accent), var(--color-base-200)) border-box;
-    transition: --angle 2s, transform 0.25s var(--ease-dynamic), padding 0.25s var(--ease-dynamic), font-weight 0.25s var(--ease-dynamic), text-shadow 0.25s var(--ease);
+    background: radial-gradient(ellipse closest-corner at 50% 50%, oklch(from var(--color-base-100) l 0.15 h) 55%, oklch(from var(--color-base-100) l 0.15 h)) 100% padding-box, linear-gradient(var(--angle), oklch(from var(--color-base-100) l 0.15 h), oklch(from var(--color-accent) 0.3 c h )) border-box;
+    transition: --angle 1s var(--ease-dynamic), transform 0.25s var(--ease-dynamic), padding 0.25s var(--ease-dynamic), font-weight 0.25s var(--ease-dynamic), text-shadow 0.25s var(--ease);
     &:focus {
       --angle: 360deg;
+      transition: --angle 2s var(--ease-elastic), transform 0.25s var(--ease-dynamic), padding 0.25s var(--ease-dynamic), font-weight 0.25s var(--ease-dynamic), text-shadow 0.25s var(--ease);
     }
 
     &.error {
