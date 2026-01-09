@@ -28,9 +28,9 @@ if (container) {
   );
   camera.position.set(0, 0, 7);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.25);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.30);
   const keyLight = new THREE.DirectionalLight(0xffffff, 0.35);
-  keyLight.position.set(4, 6, 8);
+  keyLight.position.set(0, 4, 10.25);
   scene.add(ambientLight, keyLight);
 
   const loader = new GLTFLoader();
@@ -90,8 +90,8 @@ if (container) {
     );
   };
 
-  loadModel("/3d-logo/border.glb", borderGroup, 3.6, { polygonOffset: true });
-  loadModel("/3d-logo/z.glb", zGroup, 2.3);
+  loadModel("/3d-logo/border.glb", borderGroup, 3.7, { polygonOffset: true });
+  loadModel("/3d-logo/z.glb", zGroup, 2.4);
 
   let scrollProgress = 0;
   let pointerX = 0;
@@ -123,10 +123,11 @@ if (container) {
 
   const cameraPath = new THREE.CatmullRomCurve3([
     new THREE.Vector3(0.0, 0.5, 7.5),
-    new THREE.Vector3(7.2, 0.7, 6.4),
-    new THREE.Vector3(5.2, 0.5, 6.0),
-    new THREE.Vector3(-1.0, 0.1, 5.3),
-    new THREE.Vector3(0.0, -2.0, 4),
+    new THREE.Vector3(0.0, 0.4, 5.5),
+    new THREE.Vector3(5.2, 0.5, 5.5),
+    new THREE.Vector3(2.2, 0.6, 5.5),
+    new THREE.Vector3(-1.0, 0.4, 5.5),
+    new THREE.Vector3(0.0, -1.4, 4),
   ]);
 
   const buildTargetPath = (isMobile: boolean) =>
@@ -141,9 +142,10 @@ if (container) {
           ]
         : [
             new THREE.Vector3(-3.0, 0.4, -1.0),
-            new THREE.Vector3(4.0, 0.2, -3.0),
-            new THREE.Vector3(6.0, 0.1, 0.0),
-            new THREE.Vector3(0.2, 0.2, 0.0),
+            new THREE.Vector3(7.5, 0.1, -2.0),
+            new THREE.Vector3(5.0, 0.2, -2.0),
+            new THREE.Vector3(2.0, 0.3, -2.0),
+            new THREE.Vector3(0.2, 0.2, -2.0),
             new THREE.Vector3(0.0, -1.4, -3.0),
           ]
     );
@@ -182,7 +184,7 @@ if (container) {
     modelGroup.rotation.y = t * Math.PI * 2 + wiggleY;
     modelGroup.rotation.x = t * Math.PI * 0.35 + wiggleX;
     modelGroup.position.y = THREE.MathUtils.lerp(0, 0, t) + float;
-    borderGroup.rotation.x = t * Math.PI * 2;
+    borderGroup.rotation.x = t * Math.PI * 3;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
