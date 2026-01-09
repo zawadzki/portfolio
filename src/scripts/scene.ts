@@ -91,7 +91,7 @@ if (container) {
   };
 
   loadModel("/3d-logo/border.glb", borderGroup, 3.6, { polygonOffset: true });
-  loadModel("/3d-logo/z3.glb", zGroup, 2.3);
+  loadModel("/3d-logo/z.glb", zGroup, 2.3);
 
   let scrollProgress = 0;
   let pointerX = 0;

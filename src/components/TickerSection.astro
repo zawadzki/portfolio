@@ -3,10 +3,10 @@ const { label } = Astro.props;
 ---
 
 <section class="ticker-line" data-ticker data-reveal>
-  <span class="ticker-label">{label}</span>
+  <h2 class="ticker-label">{label}</h2>
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <h2 class="ticker-segment">{label}</h2>
+      <span class="ticker-segment">{label}</span>
     </div>
   </div>
 </section>
