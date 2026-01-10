@@ -7,6 +7,9 @@
   p {
     font-size: 1.25rem;
   }
+
+  html[data-theme="light"] & { img { filter: invert(1); } }
+  @media (prefers-color-scheme: light) { img { filter: invert(1); } }
 }
 
 .technologies-item {

@@ -69,6 +69,15 @@
                   text-shadow 0.25s var(--ease);
     }
 
+    html[data-theme="light"] & {
+      background: radial-gradient(ellipse closest-corner at 50% 50%, oklch(from var(--color-base-100) 0.900 0.1294 128.63) 55%, oklch(from var(--color-base-100) 0.900 0.1294 128.63)) 100% padding-box,
+                  linear-gradient(var(--angle), oklch(from var(--color-base-100) 0.800 0.1294 128.63), oklch(from var(--color-base-100) 0.980 0.1294 128.63 )) border-box;
+    }
+    @media (prefers-color-scheme: light) {
+      background: radial-gradient(ellipse closest-corner at 50% 50%, oklch(from var(--color-base-100) 0.900 0.1294 128.63) 55%, oklch(from var(--color-base-100) 0.900 0.1294 128.63)) 100% padding-box,
+                  linear-gradient(var(--angle), oklch(from var(--color-base-100) 0.800 0.1294 128.63), oklch(from var(--color-base-100) 0.980 0.1294 128.63 )) border-box;
+    }
+
     &.error {
       border: 2px solid color-mix(in oklch, var(--color-error) 25%, transparent);
     }

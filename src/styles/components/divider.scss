@@ -1,7 +1,7 @@
 .divider {
   height: 1px;
   width: 100%;
-  background-color: color-mix(in oklch, var(--color-primary) 45%, transparent);
+  background-color: oklch(from var(--color-primary) l c h / 0.45);
   margin-top: 1rem;
   margin-bottom: 1.25rem;
 }

@@ -24,7 +24,7 @@ if (!gtmId) {
 <html lang="en" class="is-preloading">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#000031" />
@@ -47,6 +47,15 @@ if (!gtmId) {
     <meta property="twitter:title" content={title}>
     <meta property="twitter:description" content={description}>
     <meta property="og:image" content="/social-img.jpg">
+    <script>
+      (() => {
+        const storageKey = "theme";
+        const stored = localStorage.getItem(storageKey);
+        const theme = stored === "light" || stored === "dark" ? stored : "dark";
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
     {isProd && <GTMHead />}
   </head>
   <body>
@@ -80,6 +89,11 @@ if (!gtmId) {
 
       <footer class="site-footer" data-reveal>
         <div class="footer-inner">
+          <label class="toggle">
+            <input type="checkbox" aria-label="Toggle color theme" />
+            <i class="icon icon-sun"></i>
+            <i class="icon icon-moon"></i>
+          </label>
           <p class="footer-title">&copy; 2026</p>
           <div class="footer-links">
             <a href="mailto:hello@zawdam.dev">hello <i class="icon icon-at" aria-hidden="true"></i> zawdam.dev</a>

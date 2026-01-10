@@ -9,4 +9,5 @@ import "./preloader";
 import "./blur-up";
 import "./input-modality";
 import "./hamburger";
+import "./theme-toggle";
 import "./contact-form";

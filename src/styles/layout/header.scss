@@ -30,11 +30,14 @@
   font-size: 1.85rem;
   font-weight: var(--light);
   letter-spacing: var(--letter-spacing);
+  margin-right: 0;
+  margin-left: auto;
 
   @media (max-width: 690px) {
     position: fixed;
     width: 100%;
     inset: 0;
+    margin: auto;
     background-color: var(--bg);
     background-image:  url("/light.webp"), url("/pattern.svg"), url("/noise.png");
     background-repeat: no-repeat, repeat, repeat;

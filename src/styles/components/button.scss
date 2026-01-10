@@ -47,21 +47,24 @@
                   font-weight 0.25s var(--ease-dynamic),
                   text-shadow 0.25s var(--ease);
     }
+
+    html[data-theme="light"] & {
+      background: radial-gradient(ellipse closest-corner at 50% 50%, oklch(from var(--color-base-100) 0.750 0.1294 128.63) 55%, oklch(from var(--color-base-100) 0.700 0.1294 128.63)) 100% padding-box,
+                  linear-gradient(var(--angle), oklch(from var(--color-base-100) 0.6383 0.1294 128.63), oklch(from var(--color-base-100) 0.8377 0.1294 128.63 )) border-box;
+    }
+    @media (prefers-color-scheme: light) {
+      background: radial-gradient(ellipse closest-corner at 50% 50%, oklch(from var(--color-base-100) 0.750 0.1294 128.63) 55%, oklch(from var(--color-base-100) 0.700 0.1294 128.63)) 100% padding-box,
+                  linear-gradient(var(--angle), oklch(from var(--color-base-100) 0.6383 0.1294 128.63), oklch(from var(--color-base-100) 0.8377 0.1294 128.63 )) border-box;
+    }
   }
 
   &:hover {
     font-weight: var(--medium);
-    text-shadow: 0 2px 1px var(--color-secondary);
+    text-shadow: 0 2px 1px var(--text-shadow);
 
     .icon-hand {
       animation: hand-wave 0.35s linear 3 forwards;
     }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .button:hover .icon-hand {
-    animation: unset;
   }
 }
 
@@ -71,4 +74,10 @@
   50% { transform: none; }
   75% { transform: rotate(-20deg); }
   100% { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover .icon-hand {
+    animation: unset;
+  }
 }

@@ -28,3 +28,23 @@
     width: calc(50% - 5px);
   }
 }
+
+html[data-theme="light"] {
+  .featured-item {
+    background: oklch(from var(--color-primary) 0.750 0.1294 128.63 / 0);
+    &:hover {
+      background: oklch(from var(--color-primary) 0.750 0.1294 128.63 / 0.15);
+    }
+    img { filter: invert(1); }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .featured-item {
+    background: oklch(from var(--color-primary) 0.750 0.1294 128.63 / 0);
+    &:hover {
+      background: oklch(from var(--color-primary) 0.750 0.1294 128.63 / 0.15);
+    }
+    img { filter: invert(1); }
+  }
+}

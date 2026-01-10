@@ -1,0 +1,92 @@
+.toggle {
+  --toggle-p: calc(var(--size) * .125);
+  --size: 24px;
+  --radius-selector-max: 1rem;
+  --input-color: var(--text);
+
+  width: calc(var(--size) * 2 - (var(--border) + var(--toggle-p)) * 2);
+  border: var(--border) solid currentColor;
+  color: var(--input-color);
+  cursor: none;
+  appearance: none;
+  vertical-align: middle;
+  user-select: none;
+  corner-shape: squircle;
+  border-radius: calc(var(--radius-selector) + min(var(--toggle-p), var(--radius-selector-max)) + min(var(--border), var(--radius-selector-max)));
+  padding: 2px;
+  flex-shrink: 0;
+  grid-template-columns: 0fr 1fr 1fr;
+  place-content: center;
+  display: inline-grid;
+  position: relative;
+  opacity: 0.45;
+
+  & > * {
+    z-index: 1;
+    appearance: none;
+    border: none;
+    grid-column: 2 / span 1;
+    grid-row-start: 1;
+    height: 100%;
+    transition: opacity .2s, rotate .4s;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+  }
+
+  & > :nth-child(2) {
+    color: var(--color-base-100);
+    rotate: none;
+  }
+
+  & > :nth-child(3) {
+    color: var(--color-base-100);
+    opacity: 0;
+    rotate: -15deg;
+  }
+
+  &:has(:checked)>:nth-child(2) {
+    opacity: 0;
+    rotate: 15deg;
+  }
+
+  &:has(:checked)>:nth-child(3) {
+    opacity: 1;
+    rotate: none;
+  }
+}
+
+.toggle:before {
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  corner-shape: squircle;
+  --tw-content: "";
+  content: var(--tw-content);
+  height: 100%;
+  background-color: currentColor;
+  grid-row-start: 1;
+  grid-column-start: 2;
+  transition: background-color .1s, translate .2s, inset-inline-start .2s;
+  position: relative;
+  inset-inline-start: 0;
+  translate: 0;
+}
+
+.toggle:before {
+  background-size: auto, calc(var(--noise) * 100%);
+  background-image: none, var(--fx-noise);
+}
+
+.toggle:checked,
+.toggle[aria-checked=true],
+.toggle:has(>input:checked) {
+  background-color: var(--color-base-100);
+  --input-color: var(--color-base-content);
+  grid-template-columns: 1fr 1fr 0fr;
+}
+
+:is(.toggle:checked,.toggle[aria-checked=true],.toggle:has(>input:checked)):before {
+  background-color: currentColor;
+}

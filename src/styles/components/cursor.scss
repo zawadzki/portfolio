@@ -157,3 +157,6 @@ body {
     animation: cursor-bounce 0s linear both;
   }
 }
+
+html[data-theme="light"] { .cursor, .cursor-ring { filter: invert(1); } }
+@media (prefers-color-scheme: light) { .cursor, .cursor-ring { filter: invert(1); } }
