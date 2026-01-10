@@ -37,7 +37,7 @@
     inset: 0;
     background: var(--color-primary);
     transform-origin: left center;
-    animation: preloader-scan 1.2s var(--ease-dynamic);
+    animation: preloader-scan 2s var(--ease-dynamic);
     animation-iteration-count: 1;
   }
 }

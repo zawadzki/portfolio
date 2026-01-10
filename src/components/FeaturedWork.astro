@@ -18,7 +18,7 @@ const { items } = Astro.props;
         class="featured-item hover-item"
         data-hover-image={item.hoverImage}
       >
-        <a href={`/portfolio/${item.slug}`}>
+        <a href={`/portfolio/${item.slug}`} data-astro-prefetch>
           <figure>
             <img src={item.image} alt={item.alt} />
           </figure>

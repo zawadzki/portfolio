@@ -12,3 +12,9 @@
 .magnetic-target.is-magnetic {
   transition: all 0.12s var(--ease-elastic);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .magnetic-target.is-magnetic {
+    transition: unset;
+  }
+}

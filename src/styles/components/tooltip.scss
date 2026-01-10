@@ -1,7 +1,7 @@
 [data-tooltip] {
   --tt-off: calc(100% + 6px);
   --tt-tail: calc(100% + 3px);
-  --mask-tooltip: url("/tooltip-mask.svg");
+  --tt-mask: url("/tooltip-mask.svg");
   --tt-text: var(--text);
   --tt-bg: var(--bg);
 
@@ -58,7 +58,7 @@
     pointer-events: none;
     mask-position: -1px 0;
     mask-repeat: no-repeat;
-    mask-image: var(--mask-tooltip);
+    mask-image: var(--tt-mask);
     inset: auto auto var(--tt-tail) 50%;
   }
 }

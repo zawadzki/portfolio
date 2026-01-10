@@ -52,5 +52,23 @@
   &:hover {
     font-weight: var(--medium);
     text-shadow: 0 2px 1px var(--color-secondary);
+
+    .icon-hand {
+      animation: hand-wave 0.35s linear 3 forwards;
+    }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover .icon-hand {
+    animation: unset;
+  }
+}
+
+@keyframes hand-wave {
+  0% { transform: none; }
+  25% { transform: rotate(20deg); }
+  50% { transform: none; }
+  75% { transform: rotate(-20deg); }
+  100% { transform: none; }
 }

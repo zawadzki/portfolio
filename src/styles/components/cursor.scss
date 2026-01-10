@@ -105,7 +105,7 @@ body {
 }
 
 .cursor-release .cursor-ring-inner {
-  animation: cursor-bounce 0.20s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  animation: cursor-bounce 0.20s var(--ease-bounce) both;
 }
 
 @keyframes cursor-spin {
@@ -137,5 +137,23 @@ body {
   .cursor,
   .cursor-ring {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring {
+    transition: unset;
+  }
+
+  .reticule-idle {
+    animation: cursor-spin 10s linear infinite;
+  }
+
+  .cursor-pressed .cursor-ring-inner {
+    transition: transform 0s linear;
+  }
+
+  .cursor-release .cursor-ring-inner {
+    animation: cursor-bounce 0s linear both;
   }
 }
