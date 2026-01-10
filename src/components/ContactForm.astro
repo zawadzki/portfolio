@@ -1,14 +1,19 @@
 ---
+import type { StatusLineData } from "../data/homepage";
+import StatusLine from "./StatusLine.astro";
+
 type Props = {
   action?: string;
   buttonLabel?: string;
   buttonIconClass?: string;
+  statusLine: StatusLineData;
 };
 
 const {
   action = "/contact.php",
   buttonLabel = "write a short brief",
   buttonIconClass,
+  statusLine,
 } = Astro.props;
 ---
 
@@ -55,12 +60,15 @@ const {
     aria-hidden="true"
   />
   <input type="hidden" name="page" value={Astro.url.pathname} />
-  <button class="button button-primary" type="submit">
-    {buttonIconClass ? (
-      <i class={`icon ${buttonIconClass}`} aria-hidden="true"></i>
-    ) : null}
-    {buttonLabel}
-  </button>
+  <div class="contact-form__footer">
+    <StatusLine {...statusLine} tabIndex={-1} />
+    <button class="button button-primary" type="submit">
+      {buttonIconClass ? (
+          <i class={`icon ${buttonIconClass}`} aria-hidden="true"></i>
+      ) : null}
+      {buttonLabel}
+    </button>
+  </div>
   <p
     class="contact-form__status"
     data-contact-status

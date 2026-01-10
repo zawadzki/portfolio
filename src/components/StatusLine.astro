@@ -1,0 +1,34 @@
+---
+type Props = {
+  href: string;
+  label: string;
+  statusClass?: string;
+  class?: string;
+  reveal?: boolean;
+  tabIndex?: number;
+};
+
+const {
+  href,
+  label,
+  statusClass = "status-success",
+  class: className = "",
+  reveal = true,
+  tabIndex,
+} = Astro.props;
+
+const classes = ["status-line", className].filter(Boolean).join(" ");
+---
+
+<a
+  href={href}
+  class={classes}
+  tabindex={tabIndex}
+  data-reveal={reveal ? "" : undefined}
+>
+  <div class="inline-grid">
+    <div class={`status ${statusClass} animate-ping`} aria-hidden="true"></div>
+    <div class={`status ${statusClass}`} aria-hidden="true"></div>
+  </div>
+  {label}
+</a>

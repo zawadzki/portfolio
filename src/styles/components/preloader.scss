@@ -5,7 +5,7 @@
 .preloader {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: calc(var(--layer-top) + 10);
   display: grid;
   place-items: center;
   background-color: var(--bg);
@@ -24,19 +24,21 @@
 }
 
 .preloader-line {
-  width: 160px;
-  height: 2px;
-  border-radius: 999px;
-  background: color-mix(in oklch, var(--color-primary) 15%, transparent);
+  width: 100px;
+  height: 5px;
+  corner-shape: squircle;
+  border-radius: var(--radius-selector);
+  background: oklch(from var(--color-primary) l c h / 0.25);
   position: relative;
   overflow: hidden;
-  &::after {
+  &:after {
     content: "";
     position: absolute;
     inset: 0;
     background: var(--color-primary);
     transform-origin: left center;
-    animation: preloader-scan 1.2s var(--ease) infinite;
+    animation: preloader-scan 1.2s var(--ease-dynamic);
+    animation-iteration-count: 1;
   }
 }
 
@@ -45,13 +47,9 @@
     transform: scaleX(0.2);
     opacity: 0.35;
   }
-  50% {
-    transform: scaleX(0.75);
-    opacity: 0.8;
-  }
   100% {
-    transform: scaleX(0.2);
-    opacity: 0.35;
+    transform: none;
+    opacity: 1;
   }
 }
 

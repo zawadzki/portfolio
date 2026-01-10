@@ -1,6 +1,7 @@
 const prefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
+  "(prefers-reduced-motion: reduce)"
 ).matches;
+const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
 export {};
 
@@ -222,6 +223,8 @@ const initFeaturedHover = (container: HTMLElement) => {
   window.addEventListener("wheel", onWheel, { passive: true });
 };
 
-document.querySelectorAll<HTMLElement>(".is-hover").forEach((container) => {
-  initFeaturedHover(container);
-});
+if (canHover) {
+  document.querySelectorAll<HTMLElement>(".is-hover").forEach((container) => {
+    initFeaturedHover(container);
+  });
+}

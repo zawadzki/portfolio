@@ -1,6 +1,6 @@
-.magnetic-target:not(.button):not(.skip-link) {
+.magnetic-target:not(:is(.button, .skip-link, .hamburger)) {
   display: inline-flex;
-  transition: all 0.25s var(--ease-elastic), font-weight 0.25s var(--ease-elastic), text-shadow 0.25s var(--ease-elastic);
+  transition: all 0.25s var(--ease-elastic);
   will-change: transform;
 
   &:hover {

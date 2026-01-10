@@ -6,7 +6,7 @@
   aspect-ratio: 3 / 4;
   pointer-events: none;
   opacity: 1;
-  z-index: 20;
+  z-index: var(--layer-middle);
   transform: translate3d(0, 0, 0);
   will-change: transform;
 

@@ -1,10 +1,11 @@
 .featured {
+  gap: 5px;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
   max-width: 60%;
   margin-right: 0;
   margin-left: auto;
+  position: relative;
 
   @media (max-width: 1024px) {
     max-width: 100%;
@@ -14,6 +15,14 @@
 .featured-item {
   font-size: 0;
   width: calc(33.333% - 5px);
+  background: oklch(from var(--color-primary) l c h / 0);
+  border-radius: var(--radius-selector);
+  corner-shape: squircle;
+  transition: background 0.25s var(--ease-elastic);
+
+  &:hover {
+    background: oklch(from var(--color-primary) l c h / 0.15);
+  }
 
   @media (max-width: 690px) {
     width: calc(50% - 5px);

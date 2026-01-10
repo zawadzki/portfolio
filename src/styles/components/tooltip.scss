@@ -46,7 +46,7 @@
     letter-spacing: var(--letter-spacing);
     line-height: 1;
     inset: auto auto var(--tt-off) 50%;
-    z-index: 2;
+    z-index: var(--layer-middle);
   }
 
   &:after {

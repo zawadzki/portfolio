@@ -1,4 +1,5 @@
 ---
+import type { StatusLineData } from "../data/homepage";
 import ContactForm from "./ContactForm.astro";
 type ContactButton = {
   href: string;
@@ -12,18 +13,19 @@ type ContactData = {
   buttons: ContactButton[];
 };
 
-const { data } = Astro.props;
+type Props = {
+  data: ContactData;
+  statusLine: StatusLineData;
+};
+
+const { data, statusLine } = Astro.props as Props;
 const { title, subtitle, buttons } = data as ContactData;
 ---
 
 <section class="section px-5 py-10 full-h flex items-center">
   <div class="lead align-center" data-reveal>
     <h2>{title}</h2>
-    <div class="description-status">
-      <div class="inline-grid">
-        <div class="status status-success animate-ping" aria-hidden="true"></div>
-        <div class="status status-success" aria-hidden="true"></div>
-      </div>
+    <div class="description">
       <p>{subtitle}</p>
     </div>
     <div class="buttons">
@@ -33,6 +35,10 @@ const { title, subtitle, buttons } = data as ContactData;
         </a>
       ))}
     </div>
-    <ContactForm buttonLabel="say hi" buttonIconClass="icon-hand"/>
+    <ContactForm
+      buttonLabel="say hi"
+      buttonIconClass="icon-hand"
+      statusLine={statusLine}
+    />
   </div>
 </section>

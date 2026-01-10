@@ -16,7 +16,9 @@
   max-width: 440px;
   position: sticky;
   overflow: hidden;
-  z-index: -1;
+  border-radius: var(--radius-selector);
+  corner-shape: squircle;
+  z-index: var(--layer-hell);
   top: 4rem;
 
   @media (max-width: 1024px) {

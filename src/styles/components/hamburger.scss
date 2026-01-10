@@ -1,0 +1,106 @@
+.hamburger {
+  --bar-width: 25px;
+  --bar-height: 1px;
+  --bar-spacing: 10px;
+  --bar-color: var(--text);
+  --radius: var(--radius-selector);
+  --duration: 150ms;
+  --duration-2: calc(var(--duration) * 2);
+
+  display: none;
+  width: var(--bar-width);
+  height: calc(var(--bar-height) + (var(--bar-spacing) * 2));
+
+  transition:
+          transform var(--duration-2) var(--ease-elastic),
+          scale     var(--duration-2) var(--ease-elastic);
+
+  will-change: transform;
+  position: relative;
+  cursor: pointer;
+
+  border: 0;
+  margin: 0;
+  padding: 1rem;
+  background: oklch(from var(--bg) l c h / 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: var(--radius);
+  corner-shape: squircle;
+  box-sizing: content-box;
+  appearance: none;
+
+  @media (max-width: 690px) {
+    display: flex;
+    position: fixed;
+    right: 2rem;
+    z-index: calc(var(--layer-top) + 5);
+  }
+
+  &.is-clicked {
+    &:after {
+      color: var(--bar-color);
+    }
+  }
+
+  .bar,
+  .bar:after,
+  .bar:before {
+    width: var(--bar-width);
+    height: var(--bar-height);
+    border-radius: var(--radius);
+    corner-shape: squircle;
+  }
+
+  .bar {
+    position: relative;
+    transform: translateY(var(--bar-spacing));
+    background: oklch(from var(--bar-color) l c h / 1);
+    transition: all 0ms var(--duration);
+
+    &:before,
+    &:after {
+      left: 0;
+      content: "";
+      position: absolute;
+      background: oklch(from var(--bar-color) l c h / 1);
+    }
+
+    &:before {
+      bottom: var(--bar-spacing);
+      transition:
+              bottom var(--duration) var(--duration) var(--ease-elastic),
+              transform var(--duration) 0ms          var(--ease-elastic),
+              background-color var(--duration) 0ms   var(--ease-elastic);
+    }
+
+    &:after {
+      top: var(--bar-spacing);
+      transition:
+              top var(--duration) var(--duration)  var(--ease-elastic),
+              transform var(--duration) 0ms        var(--ease-elastic),
+              background-color var(--duration) 0ms var(--ease-elastic);
+    }
+
+    &.animate {
+      background: oklch(from var(--bar-color) l c h / 0);
+
+      &:before {
+        bottom: 0;
+        transform: rotate(-45deg);
+        background-color: var(--bar-color);
+        transition:
+                bottom var(--duration) 0ms                var(--ease-elastic),
+                transform var(--duration) var(--duration) var(--ease-elastic);
+      }
+
+      &:after {
+        top: 0;
+        transform: rotate(45deg);
+        background-color: var(--bar-color);
+        transition:
+                top var(--duration) 0ms                   var(--ease-elastic),
+                transform var(--duration) var(--duration) var(--ease-elastic);
+      }
+    }
+  }
+}

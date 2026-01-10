@@ -15,9 +15,10 @@ import {
   openSourceItems,
   aboutData,
   contactData,
+  statusLine,
 } from "../data/homepage";
 
-<HeroSection />
+<HeroSection statusLine={statusLine} />
 
 <div className="section-wrapper" id="work" tabIndex="-1">
     <TickerSection label="Featured work" />
@@ -36,5 +37,5 @@ import {
 
 <div className="section-wrapper" id="contact">
     <TickerSection label="Contact" />
-    <ContactSection data={contactData} />
+    <ContactSection data={contactData} statusLine={statusLine} />
 </div>

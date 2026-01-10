@@ -21,7 +21,7 @@
 
 .status {
   grid-area: 1 / 1;
-  background-image: radial-gradient(circle at 35% 30%, oklch(1 0 0 / calc(var(--depth) * .5)), #0000);
+  background-image: radial-gradient(circle at 35% 30%, oklch(1 0 0 / calc(var(--depth) * .5)), var(--bg));
   vertical-align: middle;
   background-position: 50%;
   background-repeat: no-repeat;
@@ -30,13 +30,26 @@
   background-color: var(--color-base-content);
   width: .5rem; height: .5rem;
   display: inline-flex;
+  box-shadow: 0 2px 3px -1px color-mix(in oklab, currentColor calc(var(--depth) * 100%), var(--bg));
+
+  &.status-info {
+    background-color: var(--color-info);
+    color: var(--color-info-content);
+  }
+
+  &.status-warning {
+    background-color: var(--color-warning);
+    color: var(--color-warning-content);
+  }
+
+  &.status-error {
+    background-color: var(--color-error);
+    color: var(--color-error-content);
+  }
 
   &.status-success {
     background-color: var(--color-success);
-    color: var(--color-success);
-
-    box-shadow: 0 2px 3px -1px
-    color-mix(in oklab, currentColor calc(var(--depth) * 100%), #0000);
+    color: var(--color-success-content);
   }
 }
 

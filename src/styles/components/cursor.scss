@@ -16,7 +16,7 @@ body {
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: calc(var(--layer-top) + 5);
   opacity: 0;
   transition: opacity 0.06s var(--ease-elastic);
   mix-blend-mode: exclusion;

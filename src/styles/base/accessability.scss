@@ -43,7 +43,7 @@ html {
   margin: 0 auto;
   color: var(--text);
   padding: 1rem 1.5rem;
-  z-index: 15;
+  z-index: var(--layer-top);
 
   &:focus {
     inset: auto 5rem auto 5rem;

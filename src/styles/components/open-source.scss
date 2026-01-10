@@ -44,3 +44,11 @@
 .open-source-item-description {
   font-size: 1.25rem;
 }
+
+.open-source-item-link {
+  .button {
+    @media (max-width: 690px) {
+      width: 100%;
+    }
+  }
+}

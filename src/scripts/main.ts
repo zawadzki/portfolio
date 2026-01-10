@@ -8,4 +8,5 @@ import "./hash-scroll";
 import "./preloader";
 import "./blur-up";
 import "./input-modality";
+import "./hamburger";
 import "./contact-form";

@@ -32,6 +32,32 @@
   letter-spacing: var(--letter-spacing);
 
   @media (max-width: 690px) {
-    display: none;
+    position: fixed;
+    width: 100%;
+    inset: 0;
+    background-color: var(--bg);
+    background-image:  url("/light.webp"), url("/pattern.svg"), url("/noise.png");
+    background-repeat: no-repeat, repeat, repeat;
+    background-position: top center, center, center;
+    background-size: auto, auto, auto;
+    transition: opacity 0.45s var(--ease-dynamic), transform 0.45s var(--ease-dynamic);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    gap: 2rem;
+    pointer-events: none;
+    will-change: opacity, transform;
+    transform: scale(0.95);
+    opacity: 0;
+    z-index: var(--layer-middle);
+  }
+}
+
+@media (max-width: 690px) {
+  html.menu-open .nav {
+    pointer-events: auto;
+    transform: scale(1);
+    opacity: 1;
   }
 }

@@ -432,6 +432,18 @@ export const aboutData = {
   ],
 };
 
+export type StatusLineData = {
+  href: string;
+  label: string;
+  statusClass?: string;
+};
+
+export const statusLine: StatusLineData = {
+  href: "mailto:hello@zawdam.dev",
+  label: "Open to work",
+  statusClass: "status-success",
+};
+
 export const contactData = {
   title: "Let's stay in touch",
   subtitle: "Always open to new projects and conversations.",
