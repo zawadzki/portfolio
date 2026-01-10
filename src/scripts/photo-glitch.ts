@@ -28,6 +28,10 @@ if (figures.length) {
       return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
     }
 
+    float smoothBand(float center, float width, float t) {
+      return smoothstep(center - width, center, t) - smoothstep(center, center + width, t);
+    }
+
     void main() {
       float intensity = uIntensity;
       vec2 uv = vUv;
@@ -37,27 +41,35 @@ if (figures.length) {
         return;
       }
 
-      float scanline = sin(uv.y * 1100.0) * 0.06 * intensity;
-      float vignette = smoothstep(0.9, 0.4, distance(uv, vec2(0.5)));
-      float noise = (random(vec2(uv.y * 240.0, uTime)) - 0.5) * 0.05 * intensity;
+      vec2 centered = uv - 0.5;
+      float dist = length(centered);
 
-      float glitchLine = step(0.995, random(vec2(floor(uv.y * 120.0), uTime)));
-      float glitchShift = (random(vec2(uTime * 2.0, uv.y)) - 0.5) * 0.03 * intensity;
-      glitchShift *= glitchLine;
-      vec2 glitchUv = vec2(clamp(uv.x + glitchShift, 0.0, 1.0), uv.y);
+      float vignette = smoothstep(0.95, 0.18, dist);
 
-      vec3 color = texture2D(uTexture, glitchUv).rgb;
-      color += scanline;
-      color += noise;
+      vec3 skyBottom = vec3(0.04, 0.02, 0.12);
+      vec3 skyTop = vec3(0.6, 0.08, 0.7);
+      vec3 sky = mix(skyBottom, skyTop, smoothstep(0.05, 0.95, uv.y));
 
-      float mask = sin(uv.x * 800.0) * 0.03 * intensity;
-      color.r += mask;
-      color.g -= mask * 0.5;
-      color.b += mask * 0.2;
+      vec2 waveUv = uv + vec2(sin(uTime * 0.4 + uv.y * 4.0) * 0.015, 0.0);
+      float glitchLine = step(0.995, random(vec2(floor(uv.y * 160.0), uTime)));
+      waveUv.x += (random(vec2(uTime * 2.0, uv.y)) - 0.5) * 0.04 * intensity * glitchLine;
 
-      color *= vignette;
+      vec3 tex = texture2D(uTexture, clamp(waveUv, 0.0, 1.0)).rgb;
 
-      gl_FragColor = vec4(color, 1.0);
+
+      float chroma = 0.006 * intensity;
+      tex.r = texture2D(uTexture, clamp(waveUv + vec2(chroma, 0.0), 0.0, 1.0)).r;
+      tex.b = texture2D(uTexture, clamp(waveUv - vec2(chroma, 0.0), 0.0, 1.0)).b;
+
+      float scan = sin(uv.y * 1200.0 + uTime * 3.0) * 0.05 * intensity;
+      float noise = (random(vec2(uv.x * 200.0, uv.y * 400.0 + uTime)) - 0.5) * 0.08 * intensity;
+
+      vec3 grade = tex;
+      grade = mix(grade, grade * sky, 0.22 * intensity);
+      grade += scan + noise;
+      grade *= vignette;
+
+      gl_FragColor = vec4(grade, 1.0);
     }
   `;
 
