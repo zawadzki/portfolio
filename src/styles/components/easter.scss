@@ -1,0 +1,60 @@
+html[data-easter-egg] {
+  .canvas-layer {
+    mix-blend-mode: unset !important;
+    &:before {
+      content: attr(data-label);
+      font-family: "osrs", monospace;
+      position: absolute;
+      color: yellow;
+      text-shadow: 0 1px 0 black;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      inset: 0 0 auto 0;
+      text-align: center;
+      padding: 1.4rem 0;
+      opacity: 0;
+      animation: chat 7.75s linear 1;
+    }
+  }
+
+  &[data-hitsplat]:before {
+    font-family: 'osrs', monospace;
+    color: white;
+    text-shadow: 0 3px 0 black;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    background: url("/easter/hitsplat.png") no-repeat center;
+    background-size: cover;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    z-index: var(--layer-top);
+    letter-spacing: 1px;
+    text-align: center;
+    opacity: 0;
+    animation: hitsplat 1.828571s linear 4;
+  }
+
+  &[data-hitsplat="1"]:before { content: "10"; inset: 4rem calc(50% - 25px) auto calc(50% - 25px); }
+  &[data-hitsplat="2"]:before { content: "12"; inset: 8rem calc(50% - 25px) auto calc(50% - 25px); }
+  &[data-hitsplat="3"]:before { content: "23"; inset: 6rem calc(50% - 65px) auto calc(50% - 65px); }
+  &[data-hitsplat="4"]:before { content: "16"; inset: 6rem calc(50% + 15px) auto calc(50% + 15px); }
+}
+
+@keyframes chat {
+  0% { opacity: 0;}
+  1% { opacity: 1; }
+  99% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes hitsplat {
+  0% { opacity: 0; }
+  38% { opacity: 0; }
+  39% { opacity: 1; }
+  85% { opacity: 1; }
+  86% { opacity: 0; }
+  100% { opacity: 0; }
+}

@@ -41,6 +41,9 @@ if (container) {
   const zGroup = new THREE.Group();
   modelGroup.add(borderGroup, zGroup);
 
+  const easterEggGroup = new THREE.Group();
+  modelGroup.add(easterEggGroup);
+
   const loadModel = (
     path: string,
     target: THREE.Group,
@@ -93,6 +96,62 @@ if (container) {
   loadModel("/3d-logo/border.glb", borderGroup, 3.7, { polygonOffset: true });
   loadModel("/3d-logo/z.glb", zGroup, 2.4);
 
+  const easterEggSequence = "osrs";
+  let easterEggActive = false;
+  let easterEggBuffer = "";
+
+  const enableEasterEgg = () => {
+    easterEggActive = true;
+    document.documentElement.setAttribute("data-easter-egg", "");
+    container.setAttribute("data-label", "ironman btw");
+    borderGroup.clear();
+    zGroup.clear();
+    easterEggGroup.clear();
+    loadModel("/easter/im-btw.glb", easterEggGroup, 3.3);
+    playHitsplatSequence();
+  };
+
+  const disableEasterEgg = () => {
+    easterEggActive = false;
+    document.documentElement.removeAttribute("data-easter-egg");
+    container.removeAttribute("data-label");
+    borderGroup.clear();
+    zGroup.clear();
+    easterEggGroup.clear();
+    loadModel("/3d-logo/border.glb", borderGroup, 3.7, { polygonOffset: true });
+    loadModel("/3d-logo/z.glb", zGroup, 2.4);
+  };
+
+  const toggleEasterEgg = () => {
+    if (easterEggActive) {
+      disableEasterEgg();
+    } else {
+      enableEasterEgg();
+    }
+  };
+
+  const playHitsplatSequence = () => {
+    let count = 0;
+    const playNext = () => {
+      count += 1;
+      document.documentElement.setAttribute("data-hitsplat", String(count));
+      const audio = new Audio("/easter/hit.mp3");
+      const finish = () => {
+        if (count < 4) {
+          playNext();
+          return;
+        }
+        window.setTimeout(() => {
+          document.documentElement.removeAttribute("data-hitsplat");
+        }, 1000);
+      };
+      console.log({audio});
+      audio.addEventListener("ended", finish, { once: true });
+      audio.play().catch(finish);
+    };
+    playNext();
+  };
+
   let scrollProgress = 0;
   let pointerX = 0;
   let pointerY = 0;
@@ -120,6 +179,25 @@ if (container) {
   };
 
   window.addEventListener("pointermove", handlePointer, { passive: true });
+  window.addEventListener("keydown", (event) => {
+    if (event.key.length !== 1) {
+      return;
+    }
+    const target = event.target as HTMLElement | null;
+    if (target?.isContentEditable) {
+      return;
+    }
+    const tagName = target?.tagName;
+    if (tagName === "INPUT" || tagName === "TEXTAREA") {
+      return;
+    }
+    easterEggBuffer = `${easterEggBuffer}${event.key.toLowerCase()}`.slice(
+      -easterEggSequence.length
+    );
+    if (easterEggBuffer === easterEggSequence) {
+      toggleEasterEgg();
+    }
+  });
 
   const cameraPath = new THREE.CatmullRomCurve3([
     new THREE.Vector3(0.0, 0.5, 7.5),
